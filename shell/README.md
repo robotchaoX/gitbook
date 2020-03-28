@@ -1,8 +1,6 @@
 
 
-# shell-Notes
-
-### shell编程
+# shell 编程
 
 > **shell简介**
 >
