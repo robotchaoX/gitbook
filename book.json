@@ -1,10 +1,10 @@
 {
     "language" : "zh-hans",
-    "title": "gitbook title",
+    "title": "robotchaoX",
     "description": "gitbook description",
     "links" : {
         "sidebar" : {
-           "GitHub" : "https://robotchaox.github.io/"
+           "GitHub" : "https://github.com/robotchaoX"
         }
     },
     "plugins": [

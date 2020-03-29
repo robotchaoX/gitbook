@@ -17,7 +17,7 @@
 * [HTTP协议](http/README.md)
     * [HTTP基础](http/http.md)
 * [设计模式](she-ji-mo-shi/README.md)
-    * [设计原则](she-ji-mo-shi/she-ji-yuan-ze.md)
+    * [UML](she-ji-mo-shi/uml.md)
     * [设计模式](she-ji-mo-shi/she-ji-mo-shi.md)
 * [shell编程](shell/README.md)
     * [shell基础](shell/shell.md)
@@ -36,6 +36,6 @@
 * [OpenCV](opencv/README.md)
     * [OpenCV笔记](opencv/opencv.md)
 * [数据库](shu-ju-ku/README.md)
-    * [数据库](shu-ju-ku/shu-ju-ku.md)
-    * [数据库2](shu-ju-ku/shu-ju-ku-2.md)
+    * [MySQL](shu-ju-ku/mysql.md)
+    * [MongoDB](shu-ju-ku/mongodb.md)
 
