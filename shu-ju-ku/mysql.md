@@ -1,10 +1,12 @@
-# MySQL基础知识
+# MySQL
+
+## MySQL简介
 
 瑞典MySQL AB公司开发，由SUN收购，而后SUN被甲骨文并购，目前属于Oracle公司。
 
 MySQL是一种关联数据库管理系统 由于其体积小、速度快、总体拥有成本低、MySQL软件采用了双授权政策，分为社区版和企业版。
 
-## MySQL版本及下载
+MySQL版本及下载
 
 MySQL数据库版本相对比较繁杂。常见的有：Community社区版、Enterprise企业版。
 
@@ -14,179 +16,11 @@ Enterprise版，官方指出提供30天免费试用期。可进一步划分为My
 
 其中Community Server 可以直接从mysql 的官网下载。但Enterprice Edition只能从Oracle edelivery上下载，而Edelivery有时会屏蔽中国IP。
 
-MySQL各版本区别参见：
 
-*http://www.admin10000.com/Document/62.html*
 
-下载mysql时注意区分版本细节及所应用的系统平台：linux(32/64) 、win(32/64)
+## mysql的基本操作
 
-举例：MySQL Community Server 5.6.20 win版本
-
-GA 是指软件的通用版本，一般指正式发布的版本 (Generally Available (GA) Release)
-
-mysql-essential-5.1.60-win32.msi 是精简版，如果只需要mysql服务，就选择此版本。
-
-mysql-5.1.60-win32.msi 是完整版，包含安装程序和配置向导，有MySQL文档。
-
-mysql-noinstall-5.1.60-win32.zip 是非安装的zip压缩包，没有自动安装程序和配置向导，无安装向导
-
-mysql-5.1.60.zip 是用于windows的Mysql源码压缩包
-
-linux版本
-
-在http://www.mysql.com/downloads/网站上下载不了
-
-在 www.oracle.com/downloads 找mysql 注册用户, 选择操作系统平台和mysql版本 进行下载
-
-官方文档上有关MySQL安装，介绍了3种类型及其对应安装方式来安装MySQL数据库：
-
-　　Linux supports anumber of different solutions for installing MySQL. The recommended method isto use one of the distributions from Oracle. If you choose this method, thereare three options available:
-
-(1) Installingfrom a generic binary package in .tar.gz format. See Section 2.2,“Installing MySQL from Generic Binaries on Unix/Linux” for moreinformation.
-
-(2) Extractingand compiling MySQL from a source distribution. For detailed instructions,see Section 2.9, “InstallingMySQL from Source”.
-
-(3) Installingusing a pre-compiled RPM package. For more information on using the RPMsolution, see Section 2.5.1,“Installing MySQL from RPM Packages on Linux”
-
-我们选用较简单的RPM 包来安装。
-
-## 下载安装包
-
-　　Community Server下载地址：
-
-MySQL Community Server mysql社区版，开源、免费
-
-MySQL Enterprise Edition mysql企业版，非免费
-
-MySQL Cluster mysql集群版，开源、免费
-
-# MySQL服务器安装和启动 
-
-## 查询服务器上已经安装的mysql
-
-在终端提示符输入：rpm -aq | grep mysql 命令。查询结果如下显示：
-
-qt-mysql-4.6.2-25.el6.x86\_64
-
-mysql-connector-odbc-5.1.5r1144-7.el6.x86\_64
-
-mysql-bench-5.1.66-2.el6\_3.x86\_64
-
-mysql-devel-5.1.66-2.el6\_3.x86\_64
-
-libdbi-dbd-mysql-0.8.3-5.1.el6.x86\_64
-
-mysql-test-5.1.66-2.el6\_3.x86\_64
-
-mysql-libs-5.1.66-2.el6\_3.x86\_64
-
-mysql-5.1.66-2.el6\_3.x86\_64
-
-mysql-connector-java-5.1.17-6.el6.noarch
-
-mysql-server-5.1.66-2.el6\_3.x86\_64
-
-注：各机器有可能不相同，软件列表视实际情况。
-
-## 卸载旧的版本
-
-rpm -e 软件包名 --nodeps --allmatches (不理会依赖关系，删除所有上一步查出来的相同的mysql)
-
-\[root@localhost home\]\# rpm -e mysql-connector-odbc-3.51.26r1127-1.el5 --nodeps --allmatches
-
-\[root@localhost home\]\# rpm -e libdbi-dbd-mysql-0.8.1a-1.2.2 --nodeps --allmatches
-
-\[root@localhost home\]\# rpm -e mysql-server-5.0.77-3.el5 --nodeps --allmatches
-
-\[root@localhost home\]\# rpm -aq | grep mysql
-
-\[root@localhost home\]\#
-
-将老版本的几个文件手动删除
-
-\#rm -f /etc/my.cnf
-
-\#rm -rf /var/lib/mysql
-
-\#rm -rf /var/share/mysql
-
-\#rm -rf /usr/bin/mysql\*
-
-## 安装
-
-解压.zip安装包
-
-> unzip V46610-01-MySQL Database 5.6.20 RPM for Oracle Linux RHEL 6 x86 (64bit).zip
-
-得到如下软件包：
-
-> MySQL-client-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> MySQL-devel-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> MySQL-server-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> MySQL-embedded-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> MySQL-shared-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> MySQL-shared-compat-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> MySQL-test-advanced-5.6.20-1.el6.x86\_64.rpm
->
-> README.txt
-
-### 安装服务器
-
-\#rpm -ivh MySQL-server-advanced-5.6.\*\*\*\*-1.el6.x86\_64.rpm
-
-A RANDOM PASSWORD HAS BEEN SET FOR THE MySQL root USER !
-
-You will find that password in '**/root/.mysql\_secret**'.
-
-You must change that password on your first connect,
-
-no other statement but 'SET PASSWORD' will be accepted.
-
-See the manual for the semantics of the 'password expired' flag.
-
-Also, the account for the anonymous user has been removed.
-
-In addition, you can run:
-
-/usr/bin/mysql\_secure\_installation
-
-which will also give you the option of removing the test database.
-
-This is strongly recommended for production servers.
-
-See the manual for more instructions.
-
-Please report any problems at http://bugs.mysql.com/
-
-The latest information about MySQL is available on the web at
-
-http://www.mysql.com
-
-Support MySQL by buying support/licenses at http://shop.mysql.com
-
-New default config file was created as /usr/my.cnf and
-
-will be used by default by the server when you start it.
-
-You may edit this file to change server settings
-
-### 安装客户端：
-
-\#rpm -ivh MySQL-client-advanced-5.6.\*\*\*\*-1.el6.x86\_64.rpm
-
-说明:不安装mysql-client是不能使用mysql工具登陆到mysql数据库
-
-其他软件包选择性安装：
-
-\#rpm -ivh MySQL-devel-advanced-5.6.20-1.el6.x86\_64.rpm
-
-## 登录Mysql
+### 登录Mysql
 
 oracle收购Mysql后,新版的mysql刚安装完mysql后不能直接输入mysql登录数据库， 而是设置了默认free password密码，默认密码放在了/root/.mysql\_secret文件中，登陆后需要修改密码。
 
@@ -230,13 +64,13 @@ mysql&gt; show databases;
 
 1.  退出登录 quit/exit
 
-# mysql的基本操作
 
-## 数据库CURD
+
+### 数据库CURD
 
 对数据库进行增(create)、删(delete)、改(update)、查(Retrieve)操作。
 
-### create创建数据库
+#### create创建数据库
 
 创建一个名称为mydb1的数据库
 
@@ -256,7 +90,7 @@ create database mydb2 character set utf8;
 create database mydb3 character set utf8 collate utf8\_general\_ci;
 ```
 
-### show查看数据库
+#### show查看数据库
 
 显示所有数据库
 
@@ -274,20 +108,20 @@ show create database mydb1;
 
 注意 ：mysql默认语言集是latin1，每次在创建数据库的时候应指定字符集。Oracle是在安装时，即指定了字符集。
 
-### use使用数据库
+#### use使用数据库
 
 ```
 use mydb1
 ```
 
-### alter修改数据库
+#### alter修改数据库
 
 ```
 修改mydb1的字符集为utf8(不能修改数据库名)
 alter database mydb1 character set utf8;
 ```
 
-### drop删除数据库
+#### drop删除数据库
 
 ```
 删除数据库mydb3
@@ -296,11 +130,11 @@ drop database mydb3;
 
 
 
-## 表的CURD
+### 表的CURD
 
 对表本身进行操作：创建，查看，修改，删除
 
-### create创建表
+#### create创建表
 
 ```
 create table t1 (tid int, tname varchar(20));
@@ -369,15 +203,15 @@ mysql中的数据类型：
 
 
 
-### 查看表
+#### 查看表
 
-#### show查看所有的表：
+##### show查看所有的表：
 
 ```
 show tables;
 ```
 
-#### 查看指定表的创建语句:
+##### 查看指定表的创建语句:
 
 ```
 show create table employee;
@@ -385,21 +219,21 @@ show create table employee;
 
 注意，mysql表名称区分大小写
 
-#### desc显示指定表的结构：
+##### desc显示指定表的结构：
 
 ```
 desc employee;
 ```
 
-### 修改表
+#### 修改表
 
-#### 更改表名：
+##### 更改表名：
 
 ```
 rename table employee to worker;
 ```
 
-#### 增加一个字段：
+##### 增加一个字段：
 
 ```
 alter table employee add column height double;
@@ -407,31 +241,31 @@ alter table employee add column height double;
 
 （column关键字在Oracle中，添加则语法错误）
 
-#### 修改一个字段类型：
+##### 修改一个字段类型：
 
 ```
 alter table employee modify column height float;
 ```
 
-#### 修改一个字段名:
+##### 修改一个字段名:
 
 ```
 alter table employee change column height height_1 float;
 ```
 
-#### 删除一个字段：
+##### 删除一个字段：
 
 ```
 alter table employee drop column height_1;
 ```
 
-#### 修改表的字符集:
+##### 修改表的字符集:
 
 ```
 alter table employee character set gbk;
 ```
 
-### drop删除表
+#### drop删除表
 
 删除employee表
 
@@ -441,9 +275,9 @@ drop table employee;
 
 (MySQL中不能使用purge，添加会出现语法错误)
 
-## 表数据的CURD
+### 表数据的CURD
 
-### insert插入数据
+#### insert插入数据
 
 ```
 insert into employee values(1,'张三',1,'1983-04-27',15000,'2012-06-24','一个大牛');
@@ -455,7 +289,7 @@ insert into employee(id,name,sex,birthday,salary,entry\_date,resume) values(3,'�
 
 
 
-### update数据
+#### update数据
 
 将王五的员工薪水修改为10000元，resume改为也是一个中牛
 
@@ -471,7 +305,7 @@ update employee set salary=salary+500;
 
 
 
-### delete数据
+#### delete数据
 
 删除表中姓名为王五的记录
 
@@ -495,7 +329,7 @@ truncate employee;
 
 
 
-### select查询表数据
+#### select查询表数据
 
 ```
 select * from employee;
@@ -509,7 +343,7 @@ select id, name as "名字", salary "月薪", salary\*12 年薪 from employee wh
 
 
 
-### 综合案例
+#### 综合案例
 
 创建一个学生表，插入数据
 
@@ -1059,7 +893,7 @@ check约束在MySQL中语法保留，但没有效果。
 
 可以通过SELECT \* FROM information\_schema.\`TABLE\_CONSTRAINTS\`;查看表的约束。
 
-# mysql中文乱码问题
+## mysql中文乱码问题
 
 三层因素：
 
