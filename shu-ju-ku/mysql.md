@@ -1,5 +1,13 @@
 # MySQL
 
+---
+
+<!-- toc -->
+
+[TOC]
+
+---
+
 ## MySQL简介
 
 瑞典MySQL AB公司开发，由SUN收购，而后SUN被甲骨文并购，目前属于Oracle公司。
