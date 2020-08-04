@@ -1,6 +1,6 @@
 # http协议
 
-[toc]
+[TOC]
 
 http协议 - 应用层
 
@@ -12,28 +12,54 @@ web 浏览器可能是客户端，而计算机上的网络应用程序也可能�
 
 举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。
 
+
+
 ### 请求消息(Request)
 
-请求消息(Request) - 浏览器给服务器发
+请求消息(Request) - 浏览器给服务器发送的数据
 
-四部分: 请求行, 请求头, 空行, 请求数据
+客户端发送一个HTTP请求到服务器的请求消息包括四部分: 请求行, 请求头, 空行, 请求数据
+
+![img](assets/2012072810301161.png)
 
 - 请求行: 说明请求类型, 要访问的资源, 以及使用的http版本
 - 请求头: 说明服务器要使用的附加信息
 - 空行: 空行是必须要有的, 即使没有请求数据
 - 请求数据: 也叫主体, 可以添加任意的其他数据
 
-> GET  /test.txt  HTTP/1.1         // 请求行
-> Host: localhost:2222              // 请求头
-> User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/201001 01
-> Firefox/24.0
-> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-> Accept-Language: zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3
-> Accept-Encoding: gzip, deflate
+当在浏览器地址栏输入`http://192.168.43.118:3434/text.txt`向服务器发送请求：
+
+> GET  /test.txt  HTTP/1.1                  // 请求行，要访问资源/test.txt
+> Host: 192.168.43.118:3434              // 请求头
 > Connection: keep-alive
-> If-Modified-Since: Fri, 18 Jul 2014 08:36:36 GMT
->                                                // 空行
-> 请求数据(可以为空)                // 请求数据
+> DNT: 1
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+> Accept-Encoding: gzip, deflate
+> Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+>                                                     // 空行
+> 请求数据空(可以为空)                 // 请求数据
+
+百度请求示例：
+
+> GET / HTTP/1.1                           // 请求行，要访问资源/
+> Host: www.baidu.com                  // 请求头 
+> Connection: keep-alive
+> Cache-Control: max-age=0
+> DNT: 1
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+> Sec-Fetch-Site: none
+> Sec-Fetch-Mode: navigate
+> Sec-Fetch-User: ?1
+> Sec-Fetch-Dest: document
+> Accept-Encoding: gzip, deflate, br
+> Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+> Cookie: BIDUPSID=F59F13A20C5C1BD4105595034149E154; PSTM=1592187477; BAIDUID=F59F13A20C5C1BD4F2D6FC754668989A:FG=1; BD_UPN=123353; BD_HOME=1; H_PS_PSSID=1423_32124_32140_32045_32231_32145_32257; delPer=0; BD_CK_SAM=1; PSINO=5; ZD_ENTRY=empty
+>                                                    // 空行
+> 请求数据空(可以为空)                // 请求数据
 
 HTTP1.1的五种请求方法
 
@@ -144,10 +170,14 @@ name1=value1&name2=value2
 | 安全性           | 与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET ！ | POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中。 |
 | 可见性           | 数据在 URL 中对所有人都是可见的。                            | 数据不会显示在 URL 中。                                      |
 
+
+
 ### 响应消息(Response)
 
-响应消息(Response) - 服务器给浏览器发
-四部分: 状态行, 消息报头, 空行, 响应正文
+响应消息(Response) - 服务器给浏览器发送的数据
+四部分: 状态行(必须), 消息报头, 空行(必须), 响应正文
+
+![img](assets/httpmessage.jpg)
 
 - 状态行: 包括http协议版本号, 状态码, 状态信息
 - 消息报头: 说明客户端要使用的一些附加信息
@@ -157,15 +187,42 @@ name1=value1&name2=value2
 > HTTP/1.1 200 Ok                      // 状态行
 > Server: micro_httpd                  // 消息报头
 > Date: Fri, 18 Jul 2014 14:34:26 GMT
-> Content-Type: text/plain; charset=iso-8859-1 (必选项)
-> 告诉浏览器发送的数据是什么类型
-> Content-Length: 32
-> 发送的数据的长度
+> Content-Type: text/plain; charset=utf-8 (重要)  //响应的数据类型
+> Content-Length: 32 //响应的数据的长度
 > Content-Language: zh-CN
 > Last-Modified: Fri, 18 Jul 2014 08:36:36 GMT
 > Connection: close
 >                                                // 空行
 > xxx响应正文                           // 响应正文
+
+百度响应示例：
+
+> HTTP/1.1 200 OK                   // 状态行
+> Cache-Control: private           // 消息报头
+> Connection: keep-alive
+> Content-Encoding: gzip
+> Content-Type: html;charset=utf-8
+> Date: Fri, 10 Jul 2020 04:29:01 GMT
+> Expires: Fri, 10 Jul 2020 04:28:51 GMT
+> Server: BWS/1.1
+> Set-Cookie: BDSVRTM=0; path=/
+> Set-Cookie: BD_HOME=1; path=/
+> Set-Cookie: H_PS_PSSID=1423_32124_32140_32045_32231_32145_32257; path=/; domain=.baidu.com
+> Strict-Transport-Security: max-age=172800
+> Traceid: 1594355341057394381816994770365719048149
+> X-Ua-Compatible: IE=Edge,chrome=1
+> ​Transfer-Encoding: chunked 
+>                                                    // 空行
+> <!DOCTYPE html>                     // 响应正文
+> <html lang="zh-CN">
+>     <head>
+>           <meta charset="UTF-8">
+>           <title>百度一下</title>
+>     </head>
+>     <body>
+>            <p>      这是百度的主页面      </p>
+>     </body>
+> </html>
 
 #### http状态码
 
@@ -278,18 +335,18 @@ GET和POST方法的编码，用的是网页的编码。编码方法由网页的�
 实现http服务器
 
 1. 编写函数解析http请求
-  ○ GET /hello.html HTTP/1.1\r\n
-  ○ 将上述字符串分为三部分解析出来
+    ○ GET /hello.html HTTP/1.1\r\n
+    ○ 将上述字符串分为三部分解析出来
 2. 编写函数根据文件后缀,返回对应的文件类型
 3. sscanf - 读取格式化的字符串中的数据
-  ○ 使用正则表达式拆分
-  ○ `[^ ]`的用法
+    ○ 使用正则表达式拆分
+    ○ `[^ ]`的用法
 4. 通过浏览器请求目录数据
-  ○ 读指定目录内容
-  ○ opendir
-  ○ readdir
-  ○ closedir
-  ○ scandir - 扫描dir目录下(不包括子目录)内容
+    ○ 读指定目录内容
+    ○ opendir
+    ○ readdir
+    ○ closedir
+    ○ scandir - 扫描dir目录下(不包括子目录)内容
 5. http中数据特殊字符编码解码问题
-  ○ 编码
-  ○ 解码
+    ○ 编码
+    ○ 解码

@@ -628,33 +628,34 @@ git log --oneline --decorate --graph --all  # 输出你的提交历史、各个�
 
 ### 撤消操作
 
-#### 撤消对文件的修改
+#### 撤消对工作区的修改
 
-**本地修改了一堆文件(并没有使用git add到暂存区)，想放弃修改。**
+**本地工作区修改了一堆文件(并没有使用git add到暂存区)，想放弃修改。**
 
-单个文件/文件夹：
-
-```
-$ git checkout -- readme.md文件
-```
-
-所有文件/文件夹：
+撤消对工作区**单个文件/文件夹**的修改：
 
 ```
-$ git checkout -- .
+$ git checkout -- readme.md    # 撤销单个文件修改
+# ?? $ git checkout -- src    # 单个文件夹??
+```
+
+撤消对工作区**所有文件/文件夹**的修改：
+
+```
+$ git checkout -- .    # 撤销所有修改
 $ git checkout .
 ```
 
-**本地新增了一堆文件(并没有git add到暂存区)，想放弃修改。**
+**本地工作区新增了一堆文件(并没有git add到暂存区)，想放弃新增的文件，直接删除。**
 
-单个文件/文件夹：
+删除工作区单个文件/文件夹：
 
 ```
 $ rm filename 
 $ rm -r dir 
 ```
 
-所有文件/文件夹：
+删除工作区所有文件/文件夹：
 
 ```
 $ git clean -xdf
@@ -662,33 +663,69 @@ $ git clean -xdf
 
 -df 删除 文件 和 目录
 
-// 删除新增的文件，如果文件已经已经git add到暂存区，并不会删除！
+删除新增的文件，如果文件已经已经git add到暂存区，并不会删除!
 
 #### 取消暂存的文件
 
 **本地修改/新增了一堆文件，已经git add到暂存区，想放弃修改。**
 
-单个文件/文件夹：
-
 ```
-$ git reset HEAD readme.md文件
+git reset --mixed(默认)  HEAD当前头指针
 ```
 
-所有文件/文件夹：
+撤销暂存的单个文件/文件夹：
 
 ```
-$ git reset HEAD .
+$ git reset HEAD readme.md    # 撤销单个文件暂存
+# ?? $ git reset HEAD src    # 单个文件夹??
 ```
 
-#### 撤销提交
+撤销暂存的所有文件/文件夹：
+
+```
+$ git reset HEAD .    # 撤销所有暂存
+```
+
+撤销暂存及修改回到上次提交时的状态：
+
+如果你现在的工作目录(work tree)里搞的一团乱麻, 但是你现在还没有把它们提交; 你可以通过下面的命令, 让工作目录回到上次提交时的状态(last committed state):
+
+```
+git reset --hard HEAD
+```
+
+这条命令会把你工作目录中所有未提交的内容清空(当然这不包括未置于版控制下的文件 untracked files)
+
+
+
+#### reset撤销提交
 
 **本地通过git add & git commit 之后，想要撤销此次commit**
 
+reset三种模式:  --hard   --soft   --mixed(默认)
+
+##### reset --hard：
+
+**重置stage区和工作目录**
+
+reset --hard 会在重置 HEAD 和branch的同时，重置stage区和工作目录里的内容。当你在 reset 后面加了 --hard 参数时，你的stage区和工作目录里的内容会被完全重置为和HEAD的新位置相同的内容。换句话说，就是你的没有commit的修改会被全部擦掉。
+
 ```
-$ git reset --hard commit_id # 返回到某个节点，不保留修改。
+$ git reset --hard commit_id # 返回到某个节点，修改会被全部擦掉。
 ```
 
 // 撤销之后，你所做的已经commit的修改将会清除，仍在工作区/暂存区的代码也将会清除！
+
+##### reset --soft：
+
+**保留工作目录，并把重置 HEAD 所带来的新的差异放进暂存区**
+
+reset --soft 会在重置 HEAD 和 branch 时，保留工作目录和暂存区中的内容，并把重置 HEAD 所带来的新的差异放进暂存区。
+
+此模式下会保留 working tree工作目录的內容，不会改变到目前所有的git管理的文件夹的內容；也会
+保留 index暂存区的內容，让 index 暂存区与 working tree 工作目录的內容是一致的。就只有 repository 中的內容的更变需要与 reset 目标节点一致，因此原始节点与reset节点之间的差异变更集合会存在与index暂存区中(Staged files)，所以我们可以直接执行 git commit 將 index暂存区中的內容提交至 repository 中。当我们想合并「当前节点」与「reset目标节点」之间不具太大意义的 commit 记录(可能是阶段性地频繁提交)時，可以考虑使用 Soft Reset 来让 commit 演进线图较为清晰点。
+
+--soft 和 --hard 的区别：--hard 会清空工作目录和暂存区的改动，而 --soft则会保留工作目录的内容，并把因为保留工作目录内容所带来的新的文件差异放进暂存区。
 
 ```
 $ gitreset --soft commit_id # 返回到某个节点。保留修改
@@ -698,7 +735,63 @@ $ gitreset --soft commit_id # 返回到某个节点。保留修改
 
 // 撤销之后，你所做的已经commit的修改还在工作区！
 
-#### 重新提交
+##### reset --mixed：
+
+reset 不加参数(默认mixed)
+
+**保留工作目录，并清空暂存区**
+
+reset 如果不加参数，那么默认使用 --mixed 参数。它的行为是：保留工作目录，并且清空暂存区。也就是说，工作目录的修改、暂存区的内容以及由 reset 所导致的新的文件差异，都会被放进工作目录。简而言之，就是「把所有差异都混合（mixed）放在工作目录中」。
+
+```
+$ gitreset --mixed commit_id # 返回到某个节点。保留修改
+```
+
+
+
+**reset三种模式区别：**
+--hard：重置位置的同时，直接将 working Tree工作目录、 index 暂存区及 repository 都重置成目标Reset节点的內容,所以效果看起来等同于清空暂存区和工作区。
+
+--soft：重置位置的同时，保留working Tree工作目录和index暂存区的内容，只让repository中的内容和 reset 目标节点保持一致，因此原节点和reset节点之间的【差异变更集】会放入index暂存区中(Staged files)。所以效果看起来就是工作目录的内容不变，暂存区原有的内容也不变，只是原节点和Reset节点之间的所有差异都会放到暂存区中。
+
+--mixed（默认）：重置位置的同时，只保留Working Tree工作目录的內容，但会将 Index暂存区 和 Repository 中的內容更改和reset目标节点一致，因此原节点和Reset节点之间的【差异变更集】会放入Working Tree工作目录中。所以效果看起来就是原节点和Reset节点之间的所有差异都会放到工作目录中。
+
+**reset三种模式使用场景:**
+--hard：(1) 要放弃目前本地的所有改变時，即去掉所有add到暂存区的文件和工作区的文件，可以执行 git reset -hard HEAD 来强制恢复git管理的文件夹的內容及状态；(2) 真的想抛弃目标节点后的所有commit（可能觉得目标节点到原节点之间的commit提交都是错了，之前所有的commit有问题）。
+
+--soft：原节点和reset节点之间的【差异变更集】会放入index暂存区中(Staged files)，所以假如我们之前工作目录没有改过任何文件，也没add到暂存区，那么使用reset --soft后，我们可以直接执行 git commit 將 index暂存区中的內容提交至 repository 中。为什么要这样呢？这样做的使用场景是：假如我们想合并「当前节点」与「reset目标节点」之间不具太大意义的 commit 记录(可能是阶段性地频繁提交,就是开发一个功能的时候，改或者增加一个文件的时候就commit，这样做导致一个完整的功能可能会好多个commit点，这时假如你需要把这些commit整合成一个commit的时候)時，可以考虑使用reset --soft来让 commit 演进线图较为清晰。总而言之，可以使用--soft合并commit节点。
+
+--mixed（默认）：(1)使用完reset --mixed后，我們可以直接执行 git add 将這些改变果的文件內容加入 index 暂存区中，再执行 git commit 将 Index暂存区 中的內容提交至Repository中，这样一样可以达到合并commit节点的效果（与上面--soft合并commit节点差不多，只是多了git add添加到暂存区的操作）；(2)移除所有Index暂存区中准备要提交的文件(Staged files)，我们可以执行 git reset HEAD 来 Unstage 所有已列入 Index暂存区 的待提交的文件。(有时候发现add错文件到暂存区，就可以使用命令)。(3)commit提交某些错误代码，或者没有必要的文件也被commit上去，不想再修改错误再commit（因为会留下一个错误commit点），可以回退到正确的commit点上，然后所有原节点和reset节点之间差异会返回工作目录，假如有个没必要的文件的话就可以直接删除了，再commit上去就OK了。
+
+ 
+
+#### revert
+
+创建新提交来修复错误
+
+创建一个新的，撤消(revert)了前期修改的提交(commit)
+
+撤消最近的一个提交:
+
+```
+$ git revert HEAD
+```
+
+这样就创建了一个撤消了上次提交(HEAD)的新提交, 你就有机会来修改新提交(new commit)里的提交注释信息.
+
+你也可撤消更早期的修改, 下面这条命令就是撤消“上上次”(next-to-last)的提交:
+
+```
+$ git revert HEAD^
+```
+
+在这种情况下,git尝试去撤消老的提交,然后留下完整的老提交前的版本.　如果你最近的修改和要撤消的修改有重叠(overlap),那么就会被要求手工解决冲突(conflicts),　就像解决合并(merge)时出现的冲突一样.
+
+译者注: git revert 其实不会直接创建一个提交(commit), 把撤消后的文件内容放到索引(index)里,你需要再执行git commit命令，它们才会成为真正的提交(commit).
+
+ 
+
+#### amend重新提交
 
 有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 `--amend` 选项的提交命令尝试重新提交：
 
