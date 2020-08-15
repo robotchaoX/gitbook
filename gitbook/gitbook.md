@@ -38,7 +38,7 @@ gitbook 详细安装指南可以参考 [gitbook 文档](https://github.com/Git
 ```
 sudo apt-get install nodejs  # 安装nodejs
 node -v  # 查看nodejs版本
-# sudo apt-get install npm  # 安装npm ??
+sudo apt-get install npm  # 安装npm
 sudo npm install gitbook-cli -g  # 安装gitbook-cli
 gitbook -V  # 查看gitbook版本
 ```
