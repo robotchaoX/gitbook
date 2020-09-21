@@ -2,7 +2,9 @@
 
 ---
 
-GitHub Pages: https://robotchaox.github.io/
+# 主页
+
+[GitHubPages](https://robotchaox.github.io/)：https://robotchaox.github.io/
 
 [谷歌云服务器链接](http://34.80.131.159/)
 
@@ -13,6 +15,7 @@ GitHub Pages: https://robotchaox.github.io/
 * [Summary](README.md)
 * [C++](c++/README.md)
     * [C++基础](c++/c++-basic.md)
+    * [C++11](c++/c++11.md)
     * [STL](c++/stl.md)
 * [linux基础](linux-basic/README.md)
     * [Linux基本命令](linux-basic/linux-command.md)

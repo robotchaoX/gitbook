@@ -4,7 +4,7 @@
 
 http协议 - 应用层
 
-超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。
+**超文本传输协议（HTTP）**的设计目的是保证客户机与服务器之间的通信。
 
 HTTP 的工作方式是客户机与服务器之间的请求-应答协议。
 
@@ -22,44 +22,12 @@ web 浏览器可能是客户端，而计算机上的网络应用程序也可能�
 
 ![img](assets/2012072810301161.png)
 
-- 请求行: 说明请求类型, 要访问的资源, 以及使用的http版本
-- 请求头: 说明服务器要使用的附加信息
-- 空行: 空行是必须要有的, 即使没有请求数据
-- 请求数据: 也叫主体, 可以添加任意的其他数据
+- **请求行**: 说明请求类型, 要访问的资源, 以及使用的http版本
+- **请求头**: 说明服务器要使用的附加信息
+- **空行**: 空行是必须要有的, 即使没有请求数据
+- **请求数据**: 也叫主体, 可以添加任意的其他数据
 
-当在浏览器地址栏输入`http://192.168.43.118:3434/text.txt`向服务器发送请求：
-
-> GET  /test.txt  HTTP/1.1                  // 请求行，要访问资源/test.txt
-> Host: 192.168.43.118:3434              // 请求头
-> Connection: keep-alive
-> DNT: 1
-> Upgrade-Insecure-Requests: 1
-> User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36
-> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-> Accept-Encoding: gzip, deflate
-> Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
->                                                     // 空行
-> 请求数据空(可以为空)                 // 请求数据
-
-百度请求示例：
-
-> GET / HTTP/1.1                           // 请求行，要访问资源/
-> Host: www.baidu.com                  // 请求头 
-> Connection: keep-alive
-> Cache-Control: max-age=0
-> DNT: 1
-> Upgrade-Insecure-Requests: 1
-> User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36
-> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-> Sec-Fetch-Site: none
-> Sec-Fetch-Mode: navigate
-> Sec-Fetch-User: ?1
-> Sec-Fetch-Dest: document
-> Accept-Encoding: gzip, deflate, br
-> Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
-> Cookie: BIDUPSID=F59F13A20C5C1BD4105595034149E154; PSTM=1592187477; BAIDUID=F59F13A20C5C1BD4F2D6FC754668989A:FG=1; BD_UPN=123353; BD_HOME=1; H_PS_PSSID=1423_32124_32140_32045_32231_32145_32257; delPer=0; BD_CK_SAM=1; PSINO=5; ZD_ENTRY=empty
->                                                    // 空行
-> 请求数据空(可以为空)                // 请求数据
+#### 请求方法
 
 HTTP1.1的五种请求方法
 
@@ -67,8 +35,8 @@ HTTP1.1的五种请求方法
 
 | 方法     | 描述                                                         |
 | -------- | ------------------------------------------------------------ |
-| **GET**  | 请求指定的页面信息,并返回实体主体。                          |
-| **POST** | 向指定资源提交数据进行处理请求(例如提交表单或者上传文件)。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。 |
+| **GET**  | **请求**指定的页面信息**数据**，并返回实体主体。             |
+| **POST** | 向指定资源**提交数据**进行处理的请求(例如提交表单或者上传文件)。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。 |
 | HEAD     | 类似于get请求，但只返回 HTTP 报头，不返回文档主体，用于获取报头。 |
 | PUT      | 从客户端向服务器传送的数据取代指定的文档的内容。             |
 | DELETE   | 请求服务器删除指定的页面。                                   |
@@ -77,13 +45,14 @@ HTTP1.1的五种请求方法
 
 在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。
 
-- *GET* - 从指定的资源请求数据。
-- *POST* - 向指定的资源提交要被处理的数据
+- *GET* - 从指定的资源**请求数据**。
+- *POST* - 向指定的资源**提交**要被处理的**数据**。
 
 #### GET 方法
 
 使用get方法请求数据:
 
+> ```
 > GET /test.txt HTTP/1.1                             // 请求行
 > Host: localhost:2222                                 // 请求头
 > User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0)
@@ -94,8 +63,9 @@ HTTP1.1的五种请求方法
 > Accept-Encoding: gzip, deflate
 > Connection: keep-alive
 > If-Modified-Since: Fri, 18 Jul 2014 08:36:36 GMT\r\n
->                                                               // 空行
+>                                                            // 空行
 > 请求数据(可以为空)                               // 请求数据
+> ```
 
 请注意，查询字符串（名称/值对）是在 **GET 请求**的 **URL** 中发送的：
 
@@ -114,6 +84,46 @@ HTTP1.1的五种请求方法
 
 
 
+请求示例：
+
+当在浏览器地址栏输入`http://192.168.43.118:3434/text.txt`向服务器发送请求：
+
+> ```
+> GET  /test.txt  HTTP/1.1                  // 请求行，要访问资源 /test.txt
+> Host: 192.168.43.118:3434                 // 请求头
+> Connection: keep-alive
+> DNT: 1
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+> Accept-Encoding: gzip, deflate
+> Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+>                                               // 空行
+> 请求数据空(可以为空)                             // 请求数据
+> ```
+
+百度请求示例：
+
+> ```
+> GET / HTTP/1.1                           // 请求行，要访问资源 /
+> Host: www.baidu.com                      // 请求头 
+> Connection: keep-alive
+> Cache-Control: max-age=0
+> DNT: 1
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+> Sec-Fetch-Site: none
+> Sec-Fetch-Mode: navigate
+> Sec-Fetch-User: ?1
+> Sec-Fetch-Dest: document
+> Accept-Encoding: gzip, deflate, br
+> Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+> Cookie: BIDUPSID=F59F13A20C5C1BD4105595034149E154; PSTM=1592187477; BAIDUID=F59F13A20C5C1BD4F2D6FC754668989A:FG=1; BD_UPN=123353; BD_HOME=1; H_PS_PSSID=1423_32124_32140_32045_32231_32145_32257; delPer=0; BD_CK_SAM=1; PSINO=5; ZD_ENTRY=empty
+>                                               // 空行
+> 请求数据空(可以为空)                             // 请求数据
+> ```
+
 浏览器地址栏:
 192.168.1.115/hello.c
 
@@ -126,7 +136,8 @@ get /hello.c http/1.1
 
 使用post方法请求数据:
 
-> POST HTTP/1.1                                         // 请求行
+> ```
+> POST HTTP/1.1                                          // 请求行
 > Host: localhost:2222                                   // 请求头
 > User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0)
 > Gecko/201001 01 Firefox/24.0
@@ -136,8 +147,9 @@ get /hello.c http/1.1
 > Accept-Encoding: gzip, deflate
 > Connection: keep-alive
 > If-Modified-Since: Fri, 18 Jul 2014 08:36:36 GMT
->                                                                     // 空行
-> user=詹姆斯&pwd=James&sex=男             // 请求数据
+>                                                         // 空行
+> user=詹姆斯&pwd=James&sex=男                             // 请求数据
+> ```
 
 请注意，查询字符串（名称/值对）是在 **POST 请求**的 **HTTP 消息主体**中发送的：
 
@@ -154,7 +166,7 @@ name1=value1&name2=value2
 - POST 不能被收藏为书签
 - POST 请求对数据长度没有要求
 
-比较 GET 与 POST
+#### 比较 GET 与 POST
 
 下面的表格比较了两种 HTTP 方法：GET 和 POST。
 
@@ -175,30 +187,33 @@ name1=value1&name2=value2
 ### 响应消息(Response)
 
 响应消息(Response) - 服务器给浏览器发送的数据
-四部分: 状态行(必须), 消息报头, 空行(必须), 响应正文
+响应消息四部分: 状态行(必须), 消息报头, 空行(必须), 响应正文
 
 ![img](assets/httpmessage.jpg)
 
-- 状态行: 包括http协议版本号, 状态码, 状态信息
-- 消息报头: 说明客户端要使用的一些附加信息
-- 空行: 空行是必须要有的
-- 响应正文: 服务器返回给客户端的文本信息
+- **状态行**: 包括http协议版本号, 状态码, 状态信息
+- **消息报头**: 说明客户端要使用的一些附加信息
+- **空行**: 空行是必须要有的
+- **响应正文**: 服务器返回给客户端的文本信息
 
-> HTTP/1.1 200 Ok                      // 状态行
-> Server: micro_httpd                  // 消息报头
+> ```
+> HTTP/1.1 200 Ok                                // 状态行
+> Server: micro_httpd                            // 消息报头
 > Date: Fri, 18 Jul 2014 14:34:26 GMT
-> Content-Type: text/plain; charset=utf-8 (重要)  //响应的数据类型
+> Content-Type: text/plain; charset=utf-8 (重要，响应的数据类型)  
 > Content-Length: 32 //响应的数据的长度
 > Content-Language: zh-CN
 > Last-Modified: Fri, 18 Jul 2014 08:36:36 GMT
 > Connection: close
->                                                // 空行
-> xxx响应正文                           // 响应正文
+>                                                  // 空行
+> xxx响应正文                                       // 响应正文
+> ```
 
 百度响应示例：
 
-> HTTP/1.1 200 OK                   // 状态行
-> Cache-Control: private           // 消息报头
+> ```
+> HTTP/1.1 200 OK                               // 状态行
+> Cache-Control: private                        // 消息报头
 > Connection: keep-alive
 > Content-Encoding: gzip
 > Content-Type: html;charset=utf-8
@@ -211,18 +226,20 @@ name1=value1&name2=value2
 > Strict-Transport-Security: max-age=172800
 > Traceid: 1594355341057394381816994770365719048149
 > X-Ua-Compatible: IE=Edge,chrome=1
-> ​Transfer-Encoding: chunked 
->                                                    // 空行
-> <!DOCTYPE html>                     // 响应正文
+> Transfer-Encoding: chunked 
+>                                                  // 空行
+> 
+> <!DOCTYPE html>                                  // 响应正文
 > <html lang="zh-CN">
->     <head>
->           <meta charset="UTF-8">
->           <title>百度一下</title>
->     </head>
->     <body>
->            <p>      这是百度的主页面      </p>
->     </body>
+>    <head>
+>          <meta charset="UTF-8">
+>          <title>百度一下</title>
+>    </head>
+>    <body>
+>          <p>  这是百度的主页面  </p>
+>    </body>
 > </html>
+> ```
 
 #### http状态码
 
@@ -285,9 +302,13 @@ charset=gb2312  说明网站采用的编码是简体中文;
 charset=utf-8  代表世界通用的语言编码;可以用到中文、韩文、日文等世界上所有语言编码上
 charset=big5  说明网站采用的编码是繁体中文;
 
-#### URL 字符编码??
 
-URL - Uniform Resource Locator  统一资源定位器
+
+### URL
+
+#### URL组成
+
+**统一资源定位器**（URL） - Uniform Resource Locator  
 
 统一资源定位器（URL）用于定位万维网上的文档（或其他数据）。
 
@@ -297,6 +318,7 @@ URL 也被称为网址。URL 可以由单词组成，比如 “baidu.com”，�
 
 ```
 scheme://host.domain:port/path/filename
+https://www.baidu.com:443/
 ```
 
 - scheme - 定义因特网服务的类型。最常见的类型是 http,https,ftp
@@ -306,7 +328,51 @@ scheme://host.domain:port/path/filename
 - path - 定义服务器上的路径（如果省略，则文档必须位于网站的根目录中）。
 - filename - 定义文档/资源的名称
 
-URL 编码
+一个完整的URL例子：
+
+一个完整的URL包括：协议部分、域名部分、端口部分、虚拟目录部分、文件名部分、参数部分、锚部分 
+
+![img](assets/1188607-20190524123004043-1112804791.png)
+
+1.**协议**：模式/协议（scheme）,在Internet中可使用多种协议，如HTTP，FTP等。在”HTTP”后面的“//”为分隔符
+
+2.**域名**：也可使用IP地址作为域名使用。
+
+3.**端口**：不是一个URL必须的部分，如果省略端口部分，将采用默认端口。
+
+4.**虚拟目录**：从域名后的第一个“/”开始到最后一个“/”为止。虚拟目录不是一个URL必须的部分。
+
+5.**文件名**：从域名后的最后一个“/”至“？”(或“#”或至结束)为止，是文件名部分。文件名部分不是一个URL必须的部分，如果省略该部分，则使用默认的文件名。
+
+7.**参数**：从“？”开始到“#”（或至结束）为止之间的部分为参数部分，又称搜索部分、查询部分。参数间用“&”作为分隔符。
+
+6.**锚**：或称片段（fragment），HTTP请求不包括锚部分，从“#”开始到最后，都是锚部分。本例中的锚部分是“r_70732423“。锚部分不是一个URL必须的部分。
+
+锚点作用：打开用户页面时滚动到该锚点位置。如：一个html页面中有一段代码【<div name='r_70732423'>...</div>】，该url的hash为r_70732423
+
+ 
+
+
+
+基本URL包含模式（或称协议）、服务器名称（或IP地址）、路径和文件名，如下：
+
+```
+协议：//授权/路径?查询
+```
+
+完整的、带有授权部分的普通统一资源标志符语法看上去如下：
+
+```
+协议：//用户名:密码@子域名.域名.顶级域名:端口号/目录/文件名.文件后缀?参数=值#标志
+```
+
+
+
+
+
+
+
+#### URL 编码
 
 URL 编码会将字符转换为可通过因特网传输的格式。
 

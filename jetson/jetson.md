@@ -310,7 +310,7 @@ Jetson TX1只支持JetPack 3.3，不支持最新版的JetPack，往下找到[Jet
 
 #### 主机和Jetson连接
 
-![](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/jetpack_l4t_network_connect.png)
+![](./assets/jetpack_l4t_network_connect.png)
 
 选择第一种通过路由器连接的方式
 
@@ -322,7 +322,7 @@ Jetson TX1只支持JetPack 3.3，不支持最新版的JetPack，往下找到[Jet
 
 连接完成后，点击next，直到这里，需要让JetSon TX2进入Recovery模式。
 
-![](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/jetpack_l4t_force_recovery_mode.png)
+![](./assets/jetpack_l4t_force_recovery_mode.png)
 
 > 进入Recovery模式具体步骤如为： 
 > 1.断开电源，拔掉JetSon TX2电源线 （断电2分钟）
@@ -337,7 +337,7 @@ Jetson TX1只支持JetPack 3.3，不支持最新版的JetPack，往下找到[Jet
 
 最后，刷机成功。
 
-![](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/jetpack_l4t_succed.png)
+![](./assets/jetpack_l4t_succed.png)
 
 如果选删除下载文件，下次刷机还要重新下载。如果不删除，下次刷机就会省点时间。
 
@@ -1990,13 +1990,13 @@ TX2的J26模块下的CAN0的CAN0_RX，CAN0_TX分别接CAN收发器的RX，TX
 | CAN0_RX | Pin5    | CAN1_RX | Pin15   |
 | CAN0_TX | Pin7    | CAN1_TX | Pin17   |
 
-![J26模块接口信息](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/20180820205140233.jpg)
+![J26模块接口信息](./assets/20180820205140233.jpg)
 
-![](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/20180820210046139.png)
+![](./assets/20180820210046139.png)
 
-![è¿éåå¾çæè¿°](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/20180823172406536.jpg)
+![è¿éåå¾çæè¿°](./assets/20180823172406536.jpg)
 
-![J26与canbus收发器物理连接图](../../%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Jetson/Jetson%E6%95%99%E7%A8%8B.assets/20180823174429990.png)
+![J26与canbus收发器物理连接图](./assets/20180823174429990.png)
 
 不需要重新编译内核
 
@@ -2292,7 +2292,7 @@ sudo ip link set can1 down    # 关闭can1口
 
 
 
-### 中断
+### 中断信号
 
 ```
 kill -l    # 查看所有中断

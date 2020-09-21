@@ -1020,8 +1020,6 @@ ln -s /usr/local/redis/bin/redis-cli /usr/local/bin/redis-cli　　＃ 建立软
 
 
 
-
-
 ### 进程管理
 
 #### pidof 查询进程号
@@ -1504,7 +1502,6 @@ find 命令格式
 
 ```
 find pathname -options [-print -exec -ok ...]
-
 ```
 
 find命令的参数；

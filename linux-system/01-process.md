@@ -77,6 +77,36 @@
 
 ![进程状态](assets/1582720602605.png){width="4.55in" height="3.6319444444444446in"}
 
+
+
+**Linux进程状态：R (TASK_RUNNING)，可执行状态。**
+
+   只有在该状态的进程才可能在CPU上运行。而同一时刻可能有多个进程处于可执行状态，这些进程的task_struct结构（进程控制块）被放入对应CPU的可执行队列中（一个进程最多只能出现在一个CPU的可执行队列中）。进程调度器的任务就是从各个CPU的可执行队列中分别选择一个进程在该CPU上运行。
+
+**Linux进程状态：S (TASK_INTERRUPTIBLE)，可中断的睡眠状态。**
+
+  处于这个状态的进程因为等待某某事件的发生（比如等待socket连接、等待信号量），而被挂起。这些进程的task_struct结构被放入对应事件的等待队列中。当这些事件发生时（由外部中断触发、或由其他进程触发），对应的等待队列中的一个或多个进程将被唤醒。
+
+**Linux进程状态：D (TASK_UNINTERRUPTIBLE)，不可中断的睡眠状态。**
+
+  与TASK_INTERRUPTIBLE状态类似，进程处于睡眠状态，但是此刻进程是不可中断的。不可中断，指的并不是CPU不响应外部硬件的中断，而是指进程不响应异步信号。
+
+**Linux进程状态：T (TASK_STOPPED or TASK_TRACED)，暂停状态或跟踪状态。**
+
+  向进程发送一个SIGSTOP信号，它就会因响应该信号而进入TASK_STOPPED状态（除非该进程本身处于TASK_UNINTERRUPTIBLE状态而不响应信号）。（SIGSTOP与SIGKILL信号一样，是非常强制的。不允许用户进程通过signal系列的系统调用重新设置对应的信号处理函数。）
+向进程发送一个SIGCONT信号，可以让其从TASK_STOPPED状态恢复到TASK_RUNNING状态。
+
+**Linux进程状态：Z (TASK_DEAD - EXIT_ZOMBIE)，退出状态，进程成为僵尸进程。**
+
+  进程在退出的过程中，处于TASK_DEAD状态。
+
+**Linux进程状态：X (TASK_DEAD - EXIT_DEAD)，退出状态，进程即将被销毁。**
+
+  而进程在退出过程中也可能不会保留它的task_struct。比如这个进程是多线程程序中被detach过的进程（进程？线程？参见《linux线程浅析》）。或者父进程通过设置SIGCHLD信号的handler为SIG_IGN，显式的忽略了SIGCHLD信号。（这是posix的规定，尽管子进程的退出信号可以被设置为SIGCHLD以外的其他信号。）
+  此时，进程将被置于EXIT_DEAD退出状态，这意味着接下来的代码立即就会将该进程彻底释放。所以EXIT_DEAD状态是非常短暂的，几乎不可能通过ps命令捕捉到。
+
+
+
 ## 环境变量
 
 环境变量，是指在操作系统中用来指定操作系统**运行环境**的一些参数。通常具备以下特征：
