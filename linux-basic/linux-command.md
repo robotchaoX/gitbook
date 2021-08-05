@@ -144,23 +144,6 @@ Linux 对数据文件(*.mp3、*.bmp)，程序文件(*.c、*.h、*.o)，设备文
 
 
 
-
-
-
-
-
-
-用户信息储存在/etc/passwd文件下
-`用户名: x :用户代号:组代号::用户家目录:登录Shell`
-x的意思是用户拥有密码，用户家目录前面是空的，意思为用户的全名，如果没有设置则用用户名作为用户的全名
-组代号信息储存在/etc/group文件下（推荐用：cat -n /etc/group | grep 组名 方式查询）
-
-
-一个用户创建时的-g选项设置的是该用户的主组，如没设置则主动创建一个和该用户名相同的组作为该用户的主组
-附加组通常用来指定用户的附加权限
-
-
-
 ### 基本指令
 
 #### 终端快捷键
@@ -285,7 +268,7 @@ x的意思是用户拥有密码，用户家目录前面是空的，意思为用�
 
 查询command命令帮助手册
 
-```
+```shell
 command命令 --help
 ```
 
@@ -293,7 +276,7 @@ command命令 --help
 
 作用：manual，手册（包含了Linux中全部命令手册，英文）
 
-```
+```shell
 man 命令ls  # 查询命令帮助手册
 ```
 
@@ -311,7 +294,7 @@ man 命令ls  # 查询命令帮助手册
 
 ls 即 list(列出) ,列出当前工作目录下的所有文件/文件夹的名称
 
-```
+```shell
 ls [-lah] [路径]
 ```
 
@@ -325,7 +308,7 @@ ls [-lah] [路径]
 
 pwd 即 print wrok directory（打印工作目录）,查看当前所在文件夹路径
 
-```
+```shell
 pwd
 ```
 
@@ -333,7 +316,7 @@ pwd
 
 cd 即 change directory（切换工作目录）,切换文件夹
 
-```
+```shell
 cd [目录路径]
 ```
 
@@ -349,7 +332,7 @@ cd [目录路径]
 
 touch  即 touch（摸）,如果文件不存在，新建文件,如文件已存在，可用于刷新文件修改时间
 
-```
+```shell
 touch [文件名]
 touch a1.py b1.py /home/chao/c1.py  # 新建三个文件
 ```
@@ -358,7 +341,7 @@ touch a1.py b1.py /home/chao/c1.py  # 新建三个文件
 
 mkdir 即 make directory（创建目录）,创建目录
 
-```
+```shell
 mkdir [目录路径]
 ```
 
@@ -370,7 +353,7 @@ mkdir [目录路径]
 
 cp  即 copy（复制） 作用：复制文件或者目录
 
-```
+```shell
 cp [参数] [源文件] [目标文件]
 cp [源文件] [目标文件]    # 复制文件
 cp -r [源文件] [目标文件]    # 复制文件夹
@@ -384,7 +367,7 @@ cp {filename1,filename2,...} 目标文件    # 复制多个文件
 
 mv 即 move（移动） 作用：移动文件或者目录，还可以给文件重命名
 
-```
+```shell
 mv -i [源文件] [目标文件]
 mv {filename1,filename2,...} 目标文件    # 移动多个文件
 ```
@@ -395,10 +378,10 @@ mv {filename1,filename2,...} 目标文件    # 移动多个文件
 
 rm 即 remove（删除） 作用:删除指定文件名（删除文件无法恢复）
 
-`````
+```shell
 rm -r 新建文件夹/  # 删除文件夹下所有文件
 rm aa.py  bb.py   # 删除多个文件
-`````
+``
 
 `-r`：递归删除目录下的内容，删除==**文件夹**==时必须加上此==-r==参数
 `-f`：force 强制删除，忽略不存在文件，无需提示
@@ -407,7 +390,7 @@ rm aa.py  bb.py   # 删除多个文件
 
 tree  即 tree（树） 作用：以树状图的方式列出文件目录结构 
 
-```
+​```shell
 tree [目录名]
 ```
 
@@ -419,7 +402,7 @@ tree [目录名]
 
 vim是一款文本编辑器,vim文件不存在则新建
 
-```
+```shell
 vim test.py
 ```
 
@@ -427,7 +410,7 @@ vim test.py
 
 cat 即 concatenate（连接合并） 作用：查看文件全部内容，**一次性显示==全部内容==**,创建文件、文件合并追加文件内容等功能（适合查看内容较少的文件）
 
-```
+```shell
 cat [选项] 文件名
 cat -n test.py  # 查看内容
 cat a1.txt a2.txt > a3.txt  # 合并a1,a2到a3
@@ -438,7 +421,7 @@ cat a1.txt a2.txt > a3.txt  # 合并a1,a2到a3
 
 #### nl 带行号显示
 
-```
+```shell
 nl [-bnw] 文件
 ```
 
@@ -455,7 +438,7 @@ nl [-bnw] 文件
 
 more 即 more（更多） 作用：**==分屏==**显示文件内容，每次只显示一页内容（适合查看内容较多的文件）
 
-```
+```shell
 more 文件名
 ```
 
@@ -473,7 +456,7 @@ more 文件名
 
 作用：查看文件，以较少的内容进行输出，按下辅助功能键（数字+回车、空格键+上下方向键）查看更多
 
-```
+```shell
 less 文件名
 ```
 
@@ -481,7 +464,7 @@ less 文件名
 
 作用：查看一个文件的前n行，如果不指定n，则默认显示前10行。
 
-```
+```shell
 head -n行 文件名  # 查看前n行
 ```
 
@@ -489,7 +472,7 @@ head -n行 文件名  # 查看前n行
 
 作用1：查看一个文件的未n行，如果n不指定默认显示后10行
 
-```
+```shell
 tail -后n行 文件的路径  # 查看后n行
 tail -5 test.py  # 查看后5行
 ```
@@ -498,7 +481,7 @@ tail 实时查看日志
 
 作用2：可以通过tail指令来查看一个文件的动态变化内容【变化的内容不能是用户手动增加的】
 
-```
+```shell
 tail -f xxx.log  # 实时显示日志内容(自动更新)
 ```
 
@@ -508,7 +491,7 @@ tail -f xxx.log  # 实时显示日志内容(自动更新)
 
 wc 即 word count (单词数量)作用：统计文件内容信息（包含行数、单词数、字节数）
 
-```
+```shell
 wc -lwc 文件名  # 文件统计信息
 ```
 
@@ -520,7 +503,7 @@ wc -lwc 文件名  # 文件统计信息
 
 grep 即 globally search a regular expression 作用：查找文本文件内容,能用正则表达式
 
-```
+```shell
 grep [参数] [查找内容] [文件名]
 grep -n print test.py  # 在test.py中查找print
 ```
@@ -542,7 +525,7 @@ grep -n print test.py  # 在test.py中查找print
 
 echo 即 echo(回声) 作用：让终端中显示参数指定文字，通常与重定向联合使用
 
-```
+```shell
 echo -e 'hel\nlo world' ; echo -n 'hello boy'
 ```
 
@@ -554,7 +537,7 @@ echo -e 'hel\nlo world' ; echo -n 'hello boy'
 
 将 **一个命令的输出** 可以**通过管道** 做为 **另一个命令的输入**，前面的命令有个输出，后面需要先输入，然后再过滤，最后再输出，通俗的讲就是管道前面的输出就是后面指令的输入
 
-```
+```shell
 cat test.py | grep print
 ls -lha ./ | grep -i ^d  # 只显示当前文件夹(find)
 ls -lah ./ | grep -i ^-  # 只显示当前文件
@@ -576,7 +559,7 @@ ls 目录| wc -l  # 统计某个目录下的文档的总个数
 
 `>`和`>>`将命令执行结果重定向写入到一个文件,文件不存在则新建
 
-```
+```shell
 echo 'hello world' > h1.py  # 覆盖
 echo 'hello world' >> h1.py  # 追加
 ```
@@ -589,7 +572,7 @@ echo 'hello world' >> h1.py  # 追加
 
 clear 即 clear（清除） 作用：清屏,快捷键` Ctrl+L`
 
-```
+```shell
 clear  # 清屏
 ```
 
@@ -597,7 +580,7 @@ clear  # 清屏
 
 date 即 date（日） 作用：查询系统时间日期
 
-```
+```shell
 date  # 输出形式：2018年 3月 24日 星期六 15:54:28
 date +%F  # 输出：2018-03-24
 等价于 # date  “+%Y-%m-%d” 
@@ -623,7 +606,7 @@ date  -d  “-1 day”  “+%Y-%m-%d %H:%M:%S”
 
 cal  即 calendar（日历）作用：查看日历
 
-```
+```shell
 cal  # 当前月份的日历
 # cal -1  # 当前月份日历
 # cal -3  # 当前三个月的日历
@@ -637,7 +620,7 @@ cal -y 2013  # 输出某一个年份的日历
 
 shutdown 对应英文:shutdown(关闭), 关机或重启
 
-```
+```shell
 shutdown [选项] [时间]
 shutdown -r now # 立即重启
 shutdown now  # 立即关机
@@ -658,7 +641,7 @@ shutdown -c  # 取消关机或重启计划
 
 除了shutdown关机以外，还有以下几个**关机**命令：
 
-```
+```shell
 # init 0
 # halt
 # poweroff
@@ -668,7 +651,7 @@ shutdown -c  # 取消关机或重启计划
 
 作用：重新启动计算机		
 
-```
+```shell
 reboot  # 重启
 ```
 
@@ -680,13 +663,13 @@ reboot  # 重启
 
 输出完整的主机名
 
-```
+```shell
 hostname  # 输出完整的主机名
 ```
 
 设置临时主机名
 
-```
+```shell
 hostname 新主机名    # 设置临时主机名，重启后失效
 ```
 
@@ -694,7 +677,7 @@ hostname 新主机名    # 设置临时主机名，重启后失效
 
 永久修改主机名
 
-```
+```shell
 sudo vim /etc/hostname 
 ```
 
@@ -708,7 +691,7 @@ sudo vim /etc/hostname
 
 修改/etc/hosts配置文件
 
-```
+```shell
 sudo vim /etc/hosts
 ```
 
@@ -727,14 +710,14 @@ sudo vim /etc/hosts
 
 id 对应英文：IDentity（身份标识号码） 作用：查看一个用户的一些基本信息,包含UID（用户代号）和GID（组代号）信息，附加组id…，该指令如果不指定用户则默认当前用户。
 
-```
+```shell
 id  # 默认显示当前用户的基本信息
 id 用户名  # 显示指定用户的基本信息
 ```
 
 #### w 活动用户
 
-```
+```shell
 w
 ```
 
@@ -742,7 +725,7 @@ w
 
 who 对应英文：who（谁） 作用：查看当前在线用户的情况，登录的用户名，使用的设备终端（pts），登录到系统的时间
 
-```
+```shell
 who
 ```
 
@@ -756,13 +739,13 @@ who
 
 whoami 对应英文：who am I（我是谁） 作用：显示当前登录的用户名
 
-```
+```shell
 whoami
 ```
 
 #### last 用户登录日志
 
-```
+```shell
 last
 ```
 
@@ -770,13 +753,13 @@ last
 
 作用：输出计算机的持续在线时间（计算机从开机到现在运行的时间）
 
-```
+```shell
 uptime
 ```
 
 #### time 计算程序运行时间
 
-```
+```shell
 time python3 test.py  # 计算 test.py 程序运行的时间
 time ./test.sh  # 计算 test.sh 程序运行的时间
 ```
@@ -787,7 +770,7 @@ time ./test.sh  # 计算 test.sh 程序运行的时间
 
 作用：获取计算机操作系统相关信息
 
-```
+```shell
 uname  # 操作系统的类型
 uname  -a  # 全部的操作系统信息
 ```
@@ -796,7 +779,7 @@ uname  -a  # 全部的操作系统信息
 
 #### 查询Debian版本
 
-```
+```shell
 cat /etc/debian_version 
 ```
 
@@ -804,7 +787,7 @@ cat /etc/debian_version
 
 which 对应英文：which（哪个） 作用：查找系统**PATH目录下**的可执行文件**命令**保存系统中的位置。说白了就是查找那些我们已经安装好的可以直接执行的命令
 
-```
+```shell
 which 终端命令/可执行文件
 ```
 
@@ -812,7 +795,7 @@ which 终端命令/可执行文件
 
 查找二进制（命令）、源文件、man文件。与which不同的是这条命令可以是通过文件索引数据库而非PATH来查找的，所以查找的面比which要广。
 
-```
+```shell
 whereis 终端命令/可执行文件
 ```
 
@@ -820,7 +803,7 @@ whereis 终端命令/可执行文件
 
 find 对应英文：find（找到） 作用：查找文件,包括隐藏文件
 
-```
+```shell
 find [路径] -name “查找的名称”  # 按照文档名称搜索
 find [路径] -type f  # 搜索路径下的所有文件
 find [路径] -type d  # 搜索路径下的所有文件夹
@@ -834,7 +817,7 @@ find [路径] -type d  # 搜索路径下的所有文件夹
 
 losf命令是list open file的缩写
 
-```
+```shell
 
 ```
 
@@ -846,7 +829,7 @@ diff ： different 不同，比较两个文件的内容的不同或文件目录�
 
 比较两个文件的内容的不同,以**逐行**的方式，比较文本文件的异同处。比较两个目录，则diff会比较目录中相同文件名的文件，但不会比较其中子目录。
 
-```
+```shell
 diff file_A file_B  # 比较两个文件内容的不同
 diff -y file_A file_B  # 比较两个文件内容的不同,并排格式输出
 diff dir_A dir_B  # 比较两个文件目录结构的不同,而不管子目录
@@ -870,7 +853,7 @@ diff -r dir_A dir_B  # 比较两个文件目录结构的不同，
 > "<"表示后面文件比前面文件少了1行内容
 > ">"表示后面文件比前面文件多了1行内容
 
-```
+```shell
 diff -c file_A file_B  # 显示全部内文，并标出不同之处
 ＋ 比较的文件的后者比前着多一行
 － 比较的文件的后者比前着少一行 
@@ -902,7 +885,7 @@ diff -c file_A file_B  # 显示全部内文，并标出不同之处
 > remount：重新挂载文件系统
 > loop：使用 loop 模式用来将一个文件当成硬盘分割挂上系统
 
-```
+```shell
 mount　　＃ 查看当前已挂载
 mount /dev/sdb8 /mnt  # 挂载到/mnt
 mount -r /dev/hda1 /mnt  # 只读挂载
@@ -912,7 +895,7 @@ umount /media/cdrom  # 卸载
 
 #### umount卸载挂载
 
-```
+```shell
 umount /media/cdrom  # 卸载
 ```
 
@@ -922,7 +905,7 @@ umount /media/cdrom  # 卸载
 
 du 对应英文：disk usage（磁盘使用） 作用：显示目录下文件大小,及其所有子目录(包含隐藏文件)
 
-```
+```shell
 du -h [目录名]  # 当前目录下各文件的大小
 du -sh  # 当前目录使用总大小
 du -h --max-depth=1
@@ -939,7 +922,7 @@ du -h -d 1 | sort -hr  # 按文件夹大小排序,降序
 
 df 对应英文：disk free（磁盘剩余空间）作用：显示磁盘剩余空间
 
-```
+```shell
 df -h  # 磁盘剩余空间
 df -h ./  # 当前磁盘剩余空间
 ```
@@ -952,7 +935,7 @@ df -h ./  # 当前磁盘剩余空间
 
 作用：查看内存使用情况
 
-```
+```shell
 free -m  # 查看内存使用情况
 ```
 
@@ -966,7 +949,7 @@ free -m  # 查看内存使用情况
 
 ln 对应英文link： 作用：建立文件的软或硬链接,默认的连接类型是硬连接,软链接类似于windows系统的快捷方式,不论是硬连结或软链结都不会将原本的档案复制一份，只会占用非常少量的磁碟空间。
 
-```
+```shell
 ln [选项] 源文件或目录 目标文件或目录
 ln -s 源文件 软连接文件(快捷方式)
 ln -s /usr/local/redis/bin/redis-cli /usr/local/bin/redis-cli　　＃ 建立软连接
@@ -1024,7 +1007,7 @@ ln -s /usr/local/redis/bin/redis-cli /usr/local/bin/redis-cli　　＃ 建立软
 
 #### pidof 查询进程号
 
-```
+```shell
 pidof deepin-terminal  # 查询 deepin-terminal 进程号
 ```
 
@@ -1032,7 +1015,7 @@ pidof deepin-terminal  # 查询 deepin-terminal 进程号
 
 ps 对应英文：process status(程序进程) 作用：查看整个系统内部所运行的进程状况
 
-```
+```shell
 ps -aux  # 显示当前用户下所有进程
 ps -aux | grep firefox
 ```
@@ -1055,7 +1038,7 @@ ps 默认只会显示当前用户通过终端启动的应用程序
 
 查看当前占用CPU或内存最多的n10个进程
 
-```
+```shell
 ps -aux | sort -k4nr | head -10
 ```
 
@@ -1071,7 +1054,7 @@ head -n（n指代行数，即输出前几位的结果）
 
 top 对应英文：top（顶端） 作用：动态显示运行中的程序并排序
 
-```
+```shell
 top
 ```
 
@@ -1096,7 +1079,7 @@ top
 
 #### htop 进程
 
-```
+```shell
 htop  # top升级版
 ```
 
@@ -1104,7 +1087,7 @@ htop  # top升级版
 
 kill 对应英文：kill（杀死） 作用：杀死进程，用来终止指定的进程（terminate a process）的运行
 
-```
+```shell
 kill 27890   # 终止指定代号的进程
 kill -9 进程标识号PID    # 向当前进程发送了9号信号（SIGKILL）
 ```
@@ -1115,7 +1098,7 @@ kill -9 进程标识号PID    # 向当前进程发送了9号信号（SIGKILL）
 
 #### pkill 结束进程
 
-```
+```shell
 pkill 进程名称
 pkill ss-qt5  # 结束 ss-qt5 进程
 ```
@@ -1124,7 +1107,7 @@ pkill ss-qt5  # 结束 ss-qt5 进程
 
 与kill命令作用相似但是比kill更加好用的杀死进程的命令,作用同**pkill**
 
-```
+```shell
 killall 进程名称
 ```
 
@@ -1132,7 +1115,7 @@ killall 进程名称
 
 作用：用于控制一些软件的服务启动/停止/重启
 
-```
+```shell
 service 服务名 start/stop/restart
 ```
 
@@ -1140,7 +1123,7 @@ service 服务名 start/stop/restart
 
 env，enticement查看当前进程环境变量
 
-```
+```shell
 env
 echo $PAHT  # 只查看环境变量PATH的值
 ```
@@ -1149,7 +1132,7 @@ PATH：该环境变量中记录着shell命令解析器去查找命令的目录�
 
 #### 查看操作系统信息
 
-```
+```shell
 uname -a
 cat /proc/version
 lsb_release -a
@@ -1157,20 +1140,20 @@ lsb_release -a
 
 #### 查询Debian版本
 
-```
+```shell
 cat /etc/debian_version 
 ```
 
 #### 查看CPU信息
 
-```
+```shell
 lscpu    # 查看CPU架构信息
 cat  /proc/cpuinfo    # 查看CPU详细信息
 ```
 
 #### 查看内存信息
 
-```
+```shell
 free -h    # 内存的使用情况
 cat /proc/meminfo    # 查看内存详细信息
 dmidecode -t memory    # 查看内存硬件信息
@@ -1178,7 +1161,7 @@ dmidecode -t memory    # 查看内存硬件信息
 
 #### 查看硬盘信息
 
-```
+```shell
 fdisk -l    # 查看硬盘和分区的详细信息
 df -h    # 查看硬盘使用情况
 lsblk    # 查看硬盘和分区情况
@@ -1186,31 +1169,31 @@ lsblk    # 查看硬盘和分区情况
 
 #### 查看交换分区
 
-```
+```shell
 swapon -s   # 查看所有交换分区
 ```
 
 #### 查看网络信息
 
-```
+```shell
 ifconfig -a
 ```
 
 #### 查看某个网络接口的详细信息
 
-```
+```shell
 ethtool enp1s0
 ```
 
 #### 查看网卡硬件信息
 
-```
+```shell
 lspci | grep -i 'eth'
 ```
 
 #### 查看usb信息
 
-```
+```shell
 lsusb
 lsusb -v    # 详细的信息
 ```
@@ -1219,20 +1202,20 @@ lsusb -v    # 详细的信息
 
 即主板所有硬件槽信息
 
-```
+```shell
 lspci
 lspci -v    # 更详细的信息
 ```
 
 #### 查看bios信息
 
-```
+```shell
 dmidecode -t bios
 ```
 
 #### 查看所有硬件信息
 
-```
+```shell
 dmidecode –q    # dmidecode桌面管理接口
 ```
 
@@ -1251,7 +1234,7 @@ grep可以找出符合某个模式（Pattern）的一类字符串。例如找出
 > 123.4234.045.678
 > abcde
 
-```
+```shell
 $ egrep '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' testfile
 192.168.1.1
 1234.234.04.5678     # 234.234.04.5678部分符合
@@ -1334,7 +1317,7 @@ grep是一种查找过滤工具，正则表达式在grep中用来查找符合模
 
 查找a*这个模式的结果。会发现，三行都被找了出来。
 
-```
+```shell
 $ egrep 'a*' testfile
 aaabc
 aad
@@ -1358,7 +1341,7 @@ a匹配0个或多个a，而第三行包含0个a，所以也包含了这一模式
 
 用`^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$`查找IP，就可以把1234.234.04.5678这一行过滤掉了。
 
-```
+```shell
 $ egrep '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' testfile
 192.168.1.1
 ```
@@ -1382,7 +1365,7 @@ $ egrep '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' testfile
 Linux系统中grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹 配的行打印出来。grep全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。
 grep家族包括grep、egrep和fgrep。egrep和fgrep的命令只跟grep有很小不同。egrep是grep的扩展，支持更多的re元字符， fgrep就是fixed grep或fast grep，它们把所有的字母都看作单词，也就是说，正则表达式中的元字符表示回其自身的字面意义，不再特殊。linux使用GNU版本的grep。它功能更强，可以通过-G、-E、-F命令行选项来使用egrep和fgrep的功能。
 
-```
+```shell
 grep [options]
 ```
 
@@ -1410,54 +1393,47 @@ pattern**正则表达式**主要参数:
 
 grep命令使用简单实例
 
-```
+```shell
 $ grep ‘and’ ./LICENSE*
 $ grep ‘and’ LICENSE*
-
-
 ```
 
 显示当前目录下所有以`LICENSE`开头的**文件**中包含字符串**内容** `and`的行
 
-```
+```shell
 $ grep ‘and’ aa.txt bb.txt cc.txt
-
-
 ```
 
 显示在当前目录下`aa.txt，bb.txt，cc.txt`**文件**中匹配字符串**内容**`and`的行。
 
-```
+```shell
 $ grep ‘[a-z]\{5\}’ aa.txt    # 正则匹配
-
-
 ```
 
 显示所有包含每个字符串至少有5个连续小写字符的字符串的行。
 
-```
+```shell
 $ grep ‘w\(es\)t.*\1′ aa
-
 ```
 
-​	如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符(.*)，这些字符后面紧跟着 另外一个es(\1)，找到就显示该行。如果用egrep或grep -E，就不用”\”号进行转义，直接写成’w(es)t.*\1′就可以了。
+如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符(.*)，这些字符后面紧跟着 另外一个es(\1)，找到就显示该行。如果用egrep或grep -E，就不用”\”号进行转义，直接写成’w(es)t.*\1′就可以了。
 明确要求搜索子目录：
 
-```
+```shell
 grep -r
 
 ```
 
 或忽略子目录
 
-```
+```shell
 grep -d skip
 
 ```
 
 如果有很多输出时，您可以通过管道将其转到’less’上阅读：
 
-```
+```shell
 $ grep magic /usr/src/Linux/Documentation/* | less
 
 ```
@@ -1465,7 +1441,7 @@ $ grep magic /usr/src/Linux/Documentation/* | less
 有一点要注意，您必需提供一个文件过滤方式(搜索全部文件的话用 *)。如果您忘了，’grep’会一直等着，直到该程序被中断。如果您遇到了这样的情况，按 ，然后再试。
 下面还有一些有意思的命令行参数：
 
-```
+```shell
 grep -i pattern files ：不区分大小写地搜索。默认情况区分大小写
 grep -l pattern files ：只列出匹配的文件名
 grep -L pattern files ：列出不匹配的文件名
@@ -1482,7 +1458,7 @@ grep -c pattern files 即可查找总行数
 还有些用于搜索的特殊符号：\< 和 \> 分别标注单词的开始与结尾。
 例如：
 
-```
+```shell
 grep man * 会匹配 ‘Batman’、’manic’、’man’等
 grep ‘\<man’ * 匹配’manic’和’man’，但不是’Batman’
 grep ‘man\>’ * 匹配’Batman’和’man’，但不是’manic’
@@ -1500,7 +1476,7 @@ grep ‘\<man\>’ 只匹配’man’，而不是’Batman’或’manic’等�
 
 find 命令格式
 
-```
+```shell
 find pathname -options [-print -exec -ok ...]
 ```
 
@@ -1574,7 +1550,7 @@ exec选项后面跟随着所要执行的命令或脚本，然后是一对儿{}�
 
 例如：为了用ls -l命令列出所匹配到的文件，可以把ls -l命令放在find命令的-exec选项中
 
-```
+```shell
 $ find . -type f -exec ls -l {} \;
 
 ```
@@ -1583,7 +1559,7 @@ $ find . -type f -exec ls -l {} \;
 
 在/logs目录中查找更改时间在5日以前的文件并显示它们：
 
-```
+```shell
 $ find logs -type f -mtime +5 -exec ls {} \;
 
 ```
@@ -1592,7 +1568,7 @@ $ find logs -type f -mtime +5 -exec ls {} \;
 
 在下面的例子中， find命令在当前目录中查找所有文件名以.LOG结尾、更改时间在5日以上的文件，并删除它们，只不过在删除之前先给出提示。
 
-```
+```shell
 $ find . -name "*.conf" -mtime +5 -ok rm {} \;
 
 ```
@@ -1603,7 +1579,7 @@ $ find . -name "*.conf" -mtime +5 -ok rm {} \;
 
 在下面的例子中我们使用grep命令。find命令首先匹配所有文件名为“ passwd*”的文件，例如passwd、passwd.old、passwd.bak，然后执行grep命令看看在这些文件中是否存在一个itcast用户。
 
-```
+```shell
 # find /etc -name "passwd*" -exec grep "itcast" {} \;
 itcast:x:1000:1000::/home/itcast:/bin/bash
 
@@ -1617,7 +1593,7 @@ find命令的例子；
 
 下面两种方法都可以使用
 
-```
+```shell
 $ find $HOME -print
 $ find ~ -print
 
@@ -1625,28 +1601,28 @@ $ find ~ -print
 
 2、 让当前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件；
 
-```
+```shell
 $ find . -type f -perm 644 -exec ls -l {} \;
 
 ```
 
 3、 为了查找系统中所有文件长度为0的普通文件，并列出它们的完整路径；
 
-```
+```shell
 $ find / -type f -size 0 -exec ls -l {} \;
 
 ```
 
 4、 查找/var/logs目录中更改时间在7日以前的普通文件，并在删除之前询问它们；
 
-```
+```shell
 $ find /var/logs -type f -mtime +7 -ok rm {} \;
 
 ```
 
 5、 为了查找系统中所有属于root组的文件；
 
-```
+```shell
 $find . -group root -exec ls -l {} \;
 
 ```
@@ -1655,14 +1631,14 @@ $find . -group root -exec ls -l {} \;
 
 该命令只检查三位数字，所以相应文件的后缀不要超过999。先建几个admin.log*的文件 ，才能使用下面这个命令
 
-```
+```shell
 $ find . -name "admin.log[0-9][0-9][0-9]" -atime -7 -ok rm {} \;
 
 ```
 
 7、 为了查找当前文件系统中的所有目录并排序；
 
-```
+```shell
 $ find ./ -type d | sort
 
 ```
@@ -1683,28 +1659,28 @@ find命令把匹配到的文件传递给xargs命令，而`xargs`命令**每次�
 
 下面的例子查找系统中的每一个普通文件，然后使用xargs命令来测试它们分别属于哪类文件(file关键子)
 
-```
+```shell
 $ find ./ -type f -print | xargs file
 
 ```
 
 在当前目录下查找所有用户具有读、写和执行权限的文件，并收回相应的写权限：
 
-```
+```shell
 $ find . -perm -7 -print | xargs chmod o-w
 
 ```
 
 用grep命令在所有的普通文件中搜索hello这个词：
 
-```
+```shell
 $ find . -type f -print | xargs grep "hello"
 
 ```
 
 用grep命令在当前目录下的所有普通文件中搜索hello这个词：
 
-```
+```shell
 $ find . -name \* -type f -print | xargs grep "hello"
 
 ```
@@ -1725,7 +1701,7 @@ find命令配合使用exec和xargs可以使用户对所匹配到的文件执行�
 
 不管当前路径是什么，如果想要在自己的根目录HOME中查找文件名符合∗.txt的文件，使用‘~’作为 ‘pathname’ 的参数，波浪号代表了你的HOME目录。
 
-```
+```shell
 $ find ~ -name "*.txt" -print
 
 ```
@@ -1890,7 +1866,7 @@ $ find / -name "CON.FILE" -depth -print
 
 从当前目录开始查找位于本文件系统中文件名以XC结尾的文件：
 
-```
+```shell
 $ find . -name "*.XC" -mount -print
 ```
 
@@ -1901,7 +1877,7 @@ $ find . -name "*.XC" -mount -print
 sed意为流编辑器（Stream Editor），在Shell脚本和Makefile中作为过滤器使用非常普遍，也就是把前一个程序的输出引入sed的输入，经过一系列编辑命令转换为另一种格式输出。sed和vi都源于早期UNIX的ed工具，所以很多sed命令和vi的末行命令是相同的。
 sed命令行的基本格式为
 
-```
+```shell
 sed option 'script' file1 file2 ...
 sed option -f scriptfile file1 file2 ...
 ```
@@ -1928,20 +1904,20 @@ sed option -f scriptfile file1 file2 ...
 
 如：$ sed "2a itcast" ./testfile 在输出testfile内容的第二行后添加"itcast"。
 
-```
+```shell
 $ sed "2,5d" testfile
 ```
 
 sed处理的文件既可以由标准输入重定向得到，也可以当命令行参数传入，命令行参数可以一次传入多个文件，sed会依次处理。sed的编辑命令可以直接当命令行参数传入，也可以写成一个脚本文件然后用-f参数指定，编辑命令的格式为：
 
-```
+```shell
 /pattern/action
 ```
 
 其中pattern是正则表达式，action是编辑操作。sed程序一行一行读出待处理文件，如果某一行与pattern匹配，则执行相应的action，如果一条命令没有pattern而只有action，这个action将作用于待处理文件的每一行。
 常用sed命令
 
-```
+```shell
 /pattern/p 打印匹配pattern的行
 /pattern/d 删除匹配pattern的行
 /pattern/s/pattern1/pattern2/ 查找符合pattern的行，将该行第一个匹配pattern1的字符串替换为pattern2
@@ -1958,7 +1934,7 @@ sed处理的文件既可以由标准输入重定向得到，也可以当命令�
 
 打印其中包含abc的行
 
-```
+```shell
 $ sed '/abc/p' testfile
 123
 abc
@@ -1968,14 +1944,14 @@ abc
 
 要想只输出处理结果，应加上-n选项，这种用法相当于grep命令
 
-```
+```shell
 $ sed -n '/abc/p' testfile
 abc
 ```
 
 使用d命令就不需要-n参数了，比如删除含有abc的行
 
-```
+```shell
 $ sed '/abc/d' testfile
 123
 456
@@ -1984,7 +1960,7 @@ $ sed '/abc/d' testfile
 注意，sed命令不会修改原文件，删除命令只表示某些行不打印输出，而不是从原文件中删去。
 使用查找替换命令时，可以把匹配pattern1的字符串复制到pattern2中，比如：
 
-```
+```shell
 $ sed 's/bc/-&-/' testfile
 123
 a-bc-
@@ -1994,7 +1970,7 @@ a-bc-
 pattern2中的&表示原文件的当前行中与pattern1相匹配的字符串
 再比如：
 
-```
+```shell
 $ sed 's/\([0-9]\)\([0-9]\)/-\1-~\2~/' testfile
 -1-~2~3
 abc
@@ -2003,21 +1979,21 @@ abc
 
 pattern2中的\1表示与pattern1的第一个()括号相匹配的内容，\2表示与pattern1的第二个()括号相匹配的内容。sed默认使用Basic正则表达式规范，如果指定了-r选项则使用Extended规范，那么()括号就不必转义了。如：
 
-```
+```shell
 sed -r 's/([0-9])([0-9])/-\1-~\2~/' out.sh
 ```
 
 替换结束后，所有行，含有连续数字的第一个数字前后都添加了“-”号；第二个数字前后都添加了“~”号。
 可以一次指定多条不同的替换命令，用“;”隔开：
 
-```
+```shell
 $ sed 's/yes/no/;s/static/dhcp/' ./testfile
 ```
 
 注：使用分号隔开指令。
 也可以使用 -e 参数来指定不同的替换命令，有几个替换命令需添加几个 -e 参数：
 
-```
+```shell
 $ sed -e 's/yes/no/' -e 's/static/dhcp/' testfile
 ```
 
@@ -2042,14 +2018,14 @@ $ sed 's/<.*>//g' testfile
 
 sed以行为单位处理文件，awk比sed强的地方在于不仅能以行为单位还能以列为单位处理文件。awk缺省的行分隔符是换行，缺省的**列分隔符**是连续的**空格**和**Tab**，但是行分隔符和列分隔符都可以自定义，比如/etc/passwd文件的每一行有若干个字段，字段之间以:分隔，就可以重新定义awk的列分隔符为:并以列为单位处理这个文件。awk实际上是一门很复杂的脚本语言，还有像C语言一样的分支和循环结构，但是基本用法和sed类似，awk命令行的基本形式为：
 
-```
+```shell
 awk option 'script' file1 file2 ...
 awk option -f scriptfile file1 file2 ...
 ```
 
 和sed一样，awk处理的文件既可以由标准输入重定向得到，也可以当命令行参数传入，编辑命令可以直接当命令行参数传入，也可以用-f参数指定一个脚本文件，编辑命令的格式为：
 
-```
+```shell
 /pattern/{actions}
 condition{actions}
 ```
@@ -2062,7 +2038,7 @@ condition{actions}
 
 打印每一行的第二列:
 
-```
+```shell
 $ awk '{print $2;}' testfile
 30
 76
@@ -2071,7 +2047,7 @@ $ awk '{print $2;}' testfile
 
 自动变量$1、$2分别表示第一列、第二列等，类似于Shell脚本的位置参数，而$0表示整个当前行。再比如，如果某种产品的库存量低于75则在行末标注需要订货：
 
-```
+```shell
 $ awk '$2<75 {printf "%s\t%s\n", $0, "REORDER";} $2>=75 {print $0;}' testfile
 ProductA 30 REORDER
 ProductB 76
@@ -2081,7 +2057,7 @@ ProductC 55 REORDER
 可见awk也有和C语言非常相似的printf函数。awk命令的condition部分还可以是两个特殊的condition－BEGIN和END，对于每个待处理文件，BEGIN后面的actions在处理整个文件之前执行一次，END后面的actions在整个文件处理完之后执行一次。
 awk命令可以像C语言一样使用变量（但不需要定义变量），比如统计一个文件中的空行数
 
-```
+```shell
 $ awk '/^ *$/ {x=x+1;} END {print x;}' testfile
 ```
 
@@ -2098,7 +2074,7 @@ awk常用的内建变量
 
 例如打印系统中的用户帐号列表
 
-```
+```shell
 $ awk 'BEGIN {FS=":"} {print $1;}' /etc/passwd
 ```
 
@@ -2128,7 +2104,7 @@ tar是用来建立，还原备份文件的工具程序，它可以加入，解�
 
 **打包文件**
 
-```
+```shell
 tar -cvf 打包名.tar 被打包的文件路径  # 打包
 tar -cvf bak.tar a1.py b2.py c3.py   # 打包多个文件到一个tar包
 tar -cvf bak.tar a1.py --exclude *.log   # 打包文件排除指定文件
@@ -2165,7 +2141,7 @@ sudo tar -zcvf sysconfig.tar.gz /etc/ --same-permissions --same-owner  # 保持�
 
 **解包文件**
 
-```
+```shell
 tar -xvf 打包文件名.tar  # 解包
 tar -zxvf 打包文件名.tar.gz  # 解包并解压缩gzip文件
 tar -jxvf 打包文件名.tar.bz2  # 解包并解压缩bzip2文件
@@ -2193,7 +2169,7 @@ gzip 对应英文： 作用：压缩解压文件
 
 **只压缩**
 
-```
+```shell
 gzip 需要压缩的文件  # 压缩后，不保留原文件
 gzip -k 需要压缩的文件  # 压缩后，保留原文件
 ```
@@ -2206,7 +2182,7 @@ gzip -k 需要压缩的文件  # 压缩后，保留原文件
 
 **只解压**
 
-```
+```shell
 gunzip 需解压的文件  # 解压.gz文件
 gzip -dv 需解压的文件  # 解压.gz文件，并列出详细信息
 ```
@@ -2220,7 +2196,7 @@ gzip -dv 需解压的文件  # 解压.gz文件，并列出详细信息
 
 **打包并压缩文件**
 
-```
+```shell
 tar -zcvf 打包文件.tar.gz 被压缩的文件／路径...  # 打包并压缩文件
 ```
 
@@ -2228,7 +2204,7 @@ tar -zcvf 打包文件.tar.gz 被压缩的文件／路径...  # 打包并压缩�
 
 **解包并解压缩文件**
 
-```
+```shell
 tar -zxvf 打包文件.tar.gz  # 解包并解压缩文件
 tar -zxvf 打包文件.tar.gz -C 目标路径  # 解压缩到指定路径
 ```
@@ -2237,7 +2213,7 @@ tar -zxvf 打包文件.tar.gz -C 目标路径  # 解压缩到指定路径
 
 #### zcat 查看压缩日志
 
-```
+```shell
 zcat test.py  # 查看压缩日志
 ```
 
@@ -2247,7 +2223,7 @@ zcat test.py  # 查看压缩日志
 
 bzip2 对应英文：作用：压缩文件（和gzip相似）
 
-```
+```shell
 # 只压缩
 bzip2 需要压缩的文件
 bzip2 -k 需要压缩的文件  # 保留源文件
@@ -2260,7 +2236,7 @@ bzip2 -d FileName.bz2 
 
 如果想在建立tar文件时就压缩加一个==-j==选项就行，解压缩也只用在tar解包命令下多加一个==-j==就行（如：tar -jcvf py.tar.bz2 *）
 
-```
+```shell
 # 打包并压缩文件
 tar -jcvf 打包文件.tar.bz2 被压缩的文件／路径...
 # 打包并解压缩文件
@@ -2277,7 +2253,7 @@ zip命令为打包压缩命令，一般为了更windows交互才会用的，不�
 
 ##### 只压缩
 
-```
+```shell
 # 压缩文件
 zip test.zip test.txt  # 压缩文件，生成压缩包
 zip -m test.zip test1.txt  # 移动文件到压缩包，删除源文件
@@ -2310,7 +2286,7 @@ zip test.zip test.txt -6
 ##### 只解压
 
 
-```
+```shell
 unzip xxx.zip  # 解压.zip文件到当前目录
 unzip xxx.zip -d /home/chao/  # 解压到/home/chao/目录下
 ```
@@ -2329,7 +2305,7 @@ unzip xxx.zip -d /home/chao/  # 解压到/home/chao/目录下
 
 #### rar压缩
 
-```
+```shell
 rar a 压缩文件名 压缩的源文件
 rar a -r 压缩文件名 压缩的源目录
 ```
@@ -2340,7 +2316,7 @@ rar a -r 压缩文件名 压缩的源目录
 
 打包的生成的新文件不需要指定后缀
 
-```
+```shell
 rar x newdir.rar
 rar x all.rar  指定目录    # 解压到指定目录
 ```
@@ -2356,47 +2332,47 @@ apt 对应英文：Advanced Packaging Tool（高级包工具） 作用:安装/�
 
 - **安装软件**
 
-  ```
+```shell
   sudo apt-get install <package>  # 安装包
   sudo apt-get install <package> --reinstall  # 重新安装包
   sudo apt-get -f install  # 修复安装
   sudo apt-get build-dep <package>  # 安装相关的编译环境
   sudo apt-get source <package>  # 下载该包的源代码
   #安装deb软件包  # sudo dpkg -i <package>
-  ```
+```
 
 - **卸载软件**
 
-  ```
+```shell
   sudo apt-get remove <package>  # 卸载包
   sudo apt-get --purge remove <package>  # 卸载已安装的软件包，同时清除配置
   sudo apt-get autoclean  # 清理无用过时的软件包
   sudo apt-get autoremove  # 自动卸载不需要的软件
   sudo apt-get autoremove --purge  # 自动卸载不需要的包及其依赖的软件包+配置文件
   #卸载deb软件包  # sudo dpkg -r <package>
-  ```
+```
 
 - **更新包索引**
 
-  ```
+  ```shell
   sudo apt-get update  # 更新源
   ```
 
 - **升级有可用更新**
 
-  ```
+  ```shell
   sudo apt-get upgrade  # 更新已安装的包
   ```
 
 - **升级系统**
 
-  ```
+  ```shell
   sudo apt-get dist-upgrade  # 升级系统
   ```
 
 - **已安装软件**
 
-  ```
+  ```shell
   sudo apt list --installed  # 查看所有已安装的软件
   sudo dpkg  -l  # 查看所有已安装的软件
   sudo apt list --installed sougou*  # 查找已安装的软件全名
@@ -2405,7 +2381,7 @@ apt 对应英文：Advanced Packaging Tool（高级包工具） 作用:安装/�
 
 - **查询软件信息**
 
-  ```
+  ```shell
   #apt-cache 加上不同的子命令和参数的使用可以实现查找,显示软件,包信息及包信赖关系等功能
   sudo apt-cache search <package正则表达式>  # 搜索软件包
   sudo apt-cache show <package>  # 获取包的详细信息，如说明、大小、版本等
@@ -2416,13 +2392,13 @@ apt 对应英文：Advanced Packaging Tool（高级包工具） 作用:安装/�
 
 - **列出更多命令和选项**
 
-  ```
+  ```shell
   sudo apt-get help
   ```
 
 #### dpkg包管理工具
 
-```
+  ```shell
 dpkg -i  手动安装Debian软件包
 dpkg -r  卸载软件包,保留配置文件
 dpkg -P  完全清除一个已安装的包，删除所有的配制文件
@@ -2431,7 +2407,7 @@ dpkg -L   查询系统中已安装的软件包所安装的位置
 dpkg -s   查询已安装的包的详细信息
 dpkg -S   查询系统中某个文件属于哪个软件包.
 dpkg -reconfigure  重新配置一个已经安装的包
-```
+  ```
 
 #### 安装deb包
 
@@ -2492,26 +2468,26 @@ pip 对应的安装路径是 python2.7/site-packages，pip3 对应的安装路�
 
 安装pip
 
-```
+  ```shell
 sudo apt-get install python3
 sudo apt-get install python3-pip
-```
+  ```
 
 查看版本和路径
 
-```
+```shell
 pip3 --version
 ```
 
 升级
 
-```
+```shell
 pip3 install --upgrade pip
 ```
 
 安装包
 
-```
+```shell
 pip3 install SomePackage              # 最新版本
 pip3 install opencv-python    # 安装opencv-python
 pip3 install SomePackage==1.0.4       # 指定版本
@@ -2520,38 +2496,38 @@ pip3 install 'SomePackage>=1.0.4'     # 最小版本
 
 卸载包
 
-```
+```shell
 pip3 uninstall SomePackage
 ```
 
 搜索包
 
-```
+```shell
 pip3 search SomePackage
 ```
 
 显示安装包信息
 
-```
+```shell
 pip3 show SomePackage  # 概述信息
 pip3 show --files SomePackage  # 详细信息
 ```
 
 列出已安装的包
 
-```
+```shell
 pip3 list
 ```
 
 查看可升级的包
 
-```
+```shell
 pip3 list --outdated
 ```
 
 升级包
 
-```
+```shell
 pip3 install --upgrade SomePackage
 ```
 
@@ -2573,18 +2549,18 @@ Ubantu有一个主服务器，上面保存有所有可以安装的软件安装�
 
 备份源文件
 
-```
+```shell
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo cp /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.list.bak
 ```
 
 修改树莓派软件更新源
 
-```
+```shell
 sudo nano /etc/apt/sources.list
 ```
 
-> ```
+> ```shell
 > #deb http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
 > #Uncomment line below then 'apt-get update' to enable 'apt-get source'
 > #deb-src http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
@@ -2595,11 +2571,11 @@ sudo nano /etc/apt/sources.list
 
 修改树莓派系统更新源
 
-```
+```shell
 sudo nano /etc/apt/sources.list.d/raspi.list
 ```
 
-> ```
+> ```shell
 > #deb http://archive.raspberrypi.org/debian/ stretch main ui
 > #Uncomment line below then 'apt-get update' to enable 'apt-get source'
 > #deb-src http://archive.raspberrypi.org/debian/ stretch main ui
@@ -2610,13 +2586,13 @@ sudo nano /etc/apt/sources.list.d/raspi.list
 
 同步更新源
 
-```
+```shell
 sudo apt-get update
 ```
 
 更新升级以安装软件包
 
-```
+```shell
 sudo apt-get upgrade
 ```
 
@@ -2634,7 +2610,7 @@ sudo apt-get upgrade
 
 别名机制依靠一个别名映射文件：~/.bashrc
 
-```
+```shell
 vim  ~/.bashrc
 ```
 
@@ -2649,7 +2625,7 @@ vim  ~/.bashrc
 
 ##### 查看当前的运行级别
 
-```
+```shell
 runlevel    # 查看当前的运行级别
 ```
 
@@ -2671,7 +2647,7 @@ runlevel显示上次的运行级别和当前的运行级别，“N”表示没�
 
 ##### 切换运行级别
 
-```
+```shell
 init 0    # 关机
 init 6    # 重启
 init 3    # 示切换到命令行模式
@@ -2680,22 +2656,24 @@ init 5    # 切换到图形界面
 
 这些命令其实都是调用的init进程，将数字（运行级别）传递给进程，进程去读配置文件执行对应的操作。
 
+命令行切换至图形命令:startx (root)
+
 #### 开机自启动服务管理
 
 安装sysv-rc-conf
 
-```
+```shell
 sudo apt-get install sysv-rc-conf
 ```
 
 
 查看服务情况
 
-```
+```shell
 sudo sysv-rc-conf    # 进入交互界面
 ```
 
-```
+```shell
 sudo sysv-rc-conf --list   # 直接打印服务列表
 sysv-rc-conf --list server_name    # 查看某服务启动级别
 sysv-rc-conf --level 345 service_name on    # 设置某服务启动级别
@@ -2705,7 +2683,7 @@ sysv-rc-conf --level 345 service_name on    # 设置某服务启动级别
 
 #### 多条命令执行
 
-```
+```shell
 cd ~/Desktop/ && touch test.py  # 切换到桌面并新建文件(必须在第一条命令执行成功才会执行后一条命令)
 ```
 
@@ -2780,7 +2758,7 @@ chmod 对应英文：changemod（切换模式） 作用：修改 **用户/组**
 
 ,注意点：如果想要给文档设置权限，操作者要么是**root**用户，要么就是文档的**所有者**。
 
-```
+```shell
 chmod [选项] 权限形式 文件
 ```
 
@@ -2827,7 +2805,7 @@ chmod [选项] 权限形式 文件
 
 chown 对应英文：change owner（切换主人） 作用：修改文件或目录拥有者
 
-```
+```shell
 chown [选项-R] 用户名 文件/目录名
 chown 用户名 文件名|目录名  # 修改文件|目录的拥有者
 chgrp -R 组名 文件名|目录名  # 递归修改文件|目录的组
@@ -2841,7 +2819,7 @@ chmod -R username:groupname 文件名|目录名  # 同时修改所有者和所�
 
 chgrp 对应英文：change group（切换组） 作用：递归修改文件或者目录所属组
 
-```
+```shell
 chgrp [选项-R] 组名 文件/目录名
 ```
 
@@ -2855,19 +2833,19 @@ sudo 对应英文：subtitute user do（使用另一个用户的身份） 作用
 
 切换到超级用户
 
-```
+```shell
 sudo su
 ```
 
 退出超级用户
 
-```
+```shell
 exit
 ```
 
 普通用户使用超级用户权限执行命令
 
-```
+```shell
 sudo 任何命令
 sudo -l   # 查看当前用户所具有的特殊权限
 ```
@@ -2878,7 +2856,7 @@ sudo -l   # 查看当前用户所具有的特殊权限
 
 将使名为 `username` 的用户成为 `sudo` 组的成员，用户就使用 `sudo` 命令，普通用户授予 sudo 权限
 
-```
+```shell
 sudo usermod -a -G sudo username
 # sudo adduser username sudo    # 普通用户授予 sudo 权限
 # sudo deluser username sudo    # 移除用户的 sudo 权限
@@ -2893,12 +2871,12 @@ sudo usermod -a -G sudo username
 
 sudo 命令默认只有 root 用户可以运行，将用户名添加到sudo权限组，sudo权限配置文件`/etc/sudoers`，可以直接修改sudoers，也可以额使用visudo
 
-```
+```shell
 sudo visudo    # 编辑sudo权限
 # sudo vim /etc/sudoers  或者
 ```
 
-> ```
+> ```shell
 > #User privilege specification
 > root	ALL=(ALL:ALL)   ALL    # root用户
 > #Allow members of group sudo to execute any command
@@ -2925,15 +2903,26 @@ Linux系统是一个多用户多任务的操作系统，任何一个要使用系
 
 #### 查看所有用户信息
 
-```
+#### 用户信息
+
+用户信息储存在/etc/passwd文件下
+
+```shell
 cat /etc/passwd
 ```
+
+`用户名: x :用户代号:组代号::用户家目录:登录Shell`
+x的意思是用户拥有密码，用户家目录前面是空的，意思为用户的全名，如果没有设置则用用户名作为用户的全名
+组代号信息储存在/etc/group文件下（推荐用：cat -n /etc/group | grep 组名 方式查询）
+
+一个用户创建时的-g选项设置的是该用户的主组，如没设置则主动创建一个和该用户名相同的组作为该用户的主组
+附加组通常用来指定用户的附加权限
 
 #### useradd 添加用户
 
 useradd 对应英文：user add（添加用户） 作用：给计算机添加一个用户
 
-```
+```shell
 useradd [选项-m] 用户名
 sudo useradd -s /bin/bash -m chao  # 指定shell为/bin/bash 同时创建家目录
 ```
@@ -2957,7 +2946,7 @@ Linux不允许没有密码的用户登录到系统，因此前面创建的用户
 
 passwd 对应英文：password（密码） 作用：设置用户密码
 
-```
+```shell
 passwd 用户名
 sudo passwd chao    # 设置chao的密码
 sudo passwd root    # 设置root的密码
@@ -2978,7 +2967,7 @@ sudo passwd         # ？？
 
 ##### 锁定用户
 
-```
+```shell
 sudo passwd -l 用户名  # --- 锁定用户
 sudo usermod -L 用户名
 ```
@@ -2987,7 +2976,7 @@ sudo usermod -L 用户名
 
 ##### 解锁用户
 
-```
+```shell
 sudo passwd -u 用户名  # --- 解锁用户
 sudo usermod -U 用户名
 ```
@@ -2996,7 +2985,7 @@ sudo usermod -U 用户名
 
 ##### 查看状态
 
-```
+```shell
 sudo passwd -S 用户名    # --- 查看状态
 passwd -S 用户名
 ```
@@ -3007,19 +2996,19 @@ passwd -S 用户名
 >
 > 1. 切换到root用户下
 >
->    ```
+>    ```shell
 >    sudo su
 >    ```
 >
 > 2. 添加sudo文件的写权限
 >
->    ```
+>    ```shell
 >    chmod u+w /etc/sudoers
 >    ```
 >
 > 3. 编辑sudoers文件 
 >
->    ```
+>    ```shell
 >    vi /etc/sudoers 
 >    找到这行 root ALL=(ALL:ALL) ALL
 >    在他下面添加 xxx ALL=(ALL:ALL) ALL (这里的xxx是你的用户名)
@@ -3027,7 +3016,7 @@ passwd -S 用户名
 >
 > 4. 撤销sudoers文件写权限
 >
->    ```
+>    ```shell
 >    chmod u-w /etc/sudoers
 >    ```
 
@@ -3037,7 +3026,7 @@ passwd -S 用户名
 
 usermod 对应英文：user modify（修改用户） 作用：设置用户的主组或附加组和登录Shell
 
-```
+```shell
 usermod [选项] 组 用户名
 usermod -g 组 用户名  # 修改用户的主组（passwd 中的 GID）
 usermod -G 组 用户名  # 修改用户的附加组
@@ -3063,7 +3052,7 @@ usermod -G sudo 用户名  # 将用户添加到 sudo 附加组中
 
 #### usermod 修改家目录
 
-```
+```shell
 usermod -md /home/newhome_name
 ```
 
@@ -3071,7 +3060,7 @@ usermod -md /home/newhome_name
 
 ##### usermod 修改用户登录 Shell
 
-```
+```shell
 sudo usermod -s /bin/bash 用户名  # 修改用户登录 Shell
 ```
 
@@ -3081,7 +3070,7 @@ sudo usermod -s /bin/bash 用户名  # 修改用户登录 Shell
 
 ##### usermod 锁定用户
 
-```
+```shell
 sudo usermod -L 用户名    # --- 锁定用户
 sudo passwd -l 用户名  
 ```
@@ -3090,7 +3079,7 @@ sudo passwd -l 用户名
 
 ##### usermod 解锁用户
 
-```
+```shell
 sudo usermod -U 用户名    # --- 解锁用户
 sudo passwd -u 用户名  
 ```
@@ -3099,7 +3088,7 @@ sudo passwd -u 用户名
 
 ##### usermod 查看状态
 
-```
+```shell
 passwd -S 用户名    # --- 查看状态
 sudo passwd -S 用户名    
 ```
@@ -3108,7 +3097,7 @@ sudo passwd -S 用户名
 
 ##### 把用户添加到组
 
-```
+```shell
 usermod -aG user_name user_group  #多个组之间用空格隔开 
 ```
 
@@ -3118,7 +3107,7 @@ usermod -aG user_name user_group  #多个组之间用空格隔开
 
 userdel 对应英文：user delete（删除用户） 作用：删除用户
 
-```
+```shell
 userdel [选项] 用户名
 sudo userdel itcast    # 保留用户home目录
 sudo userdel -r itcast    # 用户的主目录一起删除
@@ -3130,7 +3119,7 @@ sudo userdel -r itcast    # 用户的主目录一起删除
 
 su 对应英文 switch user , 作用：切换当前的用户
 
-```
+```shell
 sudo su 用户名  # 切换到指定用户
 sudo su xxx  # 切换到xxx用户
 ```
@@ -3146,9 +3135,9 @@ sudo su xxx  # 切换到xxx用户
 
  退出当前用户登录
 
-````
+```shell
 exit
-````
+```
 
 **exit 示意图如下：**
 
@@ -3169,7 +3158,7 @@ exit
 
 groupadd 对应英文：group add（添加组） 作用：给计算机添加一个组
 
-```
+```shell
 groupadd 用户组名
 sudo groupadd mysql  # 添加用户组mysql
 ```
@@ -3178,7 +3167,7 @@ sudo groupadd mysql  # 添加用户组mysql
 
 #### groupmod 编辑用户组
 
-```
+```shell
 groupmod 选项 用户组名
 ```
 
@@ -3189,7 +3178,7 @@ groupmod 选项 用户组名
 
 groupdel 对应英文：group delet(删除组) 作用：把计算机的一个组删除
 
-```
+```shell
 groupdel 组名
 ```
 
@@ -3205,7 +3194,7 @@ ifconfig 对应英文：configure a network inrerface（配置一个网络界面
 
 - 查看网络配置信息
 
-```
+```shell
 ifconfig  # 查看网卡配置信息
 ```
 
@@ -3221,21 +3210,21 @@ ifconfig  # 查看网卡配置信息
 
 - **启动关闭指定网卡**
 
-```
+```shell
 ifconfig eth0 up  # 启动网卡
 ifconfig eth0 down  # 关闭网卡
 ```
 
 - **为网卡配置和删除IPv6地址**
 
-```
+```shell
 ifconfig eth0 add 33ffe:3240:800:1005::2/ 64  # 为网卡诶之IPv6地址
 ifconfig eth0 del 33ffe:3240:800:1005::2/ 64  # 为网卡删除IPv6地址
 ```
 
 - **用ifconfig修改MAC地址**
 
-```
+```shell
 # ifconfig eth0 down  # 关闭网卡
 # ifconfig eth0 hw ether 00:AA:BB:CC:DD:EE  # 修改MAC地址
 # ifconfig eth0 up  # 启动网卡
@@ -3245,7 +3234,7 @@ ifconfig eth0 del 33ffe:3240:800:1005::2/ 64  # 为网卡删除IPv6地址
 
 - **配置IP地址**
 
-```
+```shell
 ifconfig eth0 192.168.1.56  # 给eth0网卡配置IP地址
 ifconfig eth0 192.168.1.56 netmask 255.255.255.0  # 给eth0网卡配置IP地址,并加上子掩码
 ifconfig eth0 192.168.1.56 netmask 255.255.255.0 broadcast 192.168.1.255  # 给eth0网卡配置IP地址,加上子掩码,加上个广播地址
@@ -3253,14 +3242,14 @@ ifconfig eth0 192.168.1.56 netmask 255.255.255.0 broadcast 192.168.1.255  # 给e
 
 - **启用和关闭ARP协议**
 
-```
+```shell
 ifconfig eth0 arp  # 开启
 ifconfig eth0 -arp  # 关闭
 ```
 
 - **设置最大传输单元**
 
-```
+```shell
 ifconfig eth0 mtu 1500  # 设置能通过的最大数据包大小为 1500 bytes
 ```
 
@@ -3268,7 +3257,7 @@ ifconfig eth0 mtu 1500  # 设置能通过的最大数据包大小为 1500 bytes
 
 查看网络连接状态
 
-```
+```shell
 netstat -tnlp  # 查看网络连接状态
 netstat -an    # 查看全部网络
 ```
@@ -3283,7 +3272,7 @@ netstat -an    # 查看全部网络
 
 ping 对应英文：ping（无实意，取自声纳的声音） 作用：检测当前计算机到目标计算机之间的网络 是否通畅，数值越大，速度越慢（Ctrl+c停止检测）
 
-```
+```shell
 ping 主机地址（ip地址、主机名、域名等）
 ping IP地址  # 检测到目标主机是否连接正常
 ping 127.0.0.1  # 检测本地网卡工作正常
@@ -3297,7 +3286,7 @@ ping不通虚拟机的话,将虚拟机网络改成**桥接网卡**或者关掉�
 
 #### 查看网关
 
-```
+```shell
 netstat -r    # 
 ```
 
@@ -3315,7 +3304,7 @@ netstat -r    #
 作用：查找当前主机与目标主机之间所有的网关（路由器，会给沿途各个路由器发送icmp数据包，路由器可能会不给响应）。
 该命令不是内置命令，需要安装，`sudo apt-get install traceroute`。
 
-```
+```shell
 traceroute  主机地址
 traceroute www.baidu.com
 ```
@@ -3326,7 +3315,7 @@ traceroute www.baidu.com
 
 nslookup 查看服务器域名对应的IP地址，一般访问网站都是使用域名，如：www.baidu.com，使用该命令就可查看百度所有服务器的IP地址
 
-```
+```shell
 nslookup  www.baidu.com     # 查看百度的ip地址
 ```
 
@@ -3348,7 +3337,7 @@ nslookup  www.baidu.com     # 查看百度的ip地址
 
 当一个主机发送数据时，首先查看本机MAC地址缓存中有没有目标主机的MAC地址， 如果有就使用缓存中的结果；如果没有，ARP协议就会发出一个广播包，该广播包要求查询目标主机IP地址对应的MAC地址，拥有该IP地址的主机会发出回应，回应中包括了目标主机的MAC地址，这样发送方就得到了目标主机的MAC地址。如果目标主机不在本地子网中，则ARP解析到的MAC地址是默认网关的MAC地址。
 
-```
+```shell
 arp -a  # 查看本地缓存mac表
 # arp -d 主机地址  # 删除指定的缓存记录
 ```
@@ -3357,7 +3346,7 @@ arp -a  # 查看本地缓存mac表
 
 作用：抓包，抓取数据表
 
-```
+```shell
 # tcpdump 协议 port 端口
 # tcpdump 协议 port 端口 host 地址
 # tcpdump -i 网卡设备名	
@@ -3377,13 +3366,13 @@ HWADDR：硬件地址，MAC地址
 
 重启网卡
 
-```
+```shell
 service network restart  # 重启网卡
 ```
 
 重启**单个**网卡
 
-```
+```shell
 ifdown 网卡名  # 停止某个网卡
 ifup 网卡名  # 开启某个网卡
 ```
@@ -3394,13 +3383,13 @@ tcp/udp 网络调试
 
 #### wireshark 网络抓包工具
 
-```
+```shell
 sudo apt-get install wireshark  # 安装wireshark
 ```
 
 权限问题修复(添加到用户组)
 
-```
+```shell
 sudo groupadd wireshark 
 sudo chgrp wireshark /usr/bin/dumpcap 
 sudo chmod 4755 /usr/bin/dumpcap 
@@ -3433,7 +3422,7 @@ FTP 是File Transfer Protocol（文件传输协议）的英文简称，而中文
 
 ##### 1. 安装vsftpd服务器
 
-```
+```shell
 sudo apt-get install vsftpd
 vsftpd -v    # 查看是否安装 ftp服务器
 ```
@@ -3444,7 +3433,7 @@ vsftpd -v    # 查看是否安装 ftp服务器
 
 用于ftp上传和下载的文件夹
 
-```
+```shell
 sudo mkdir ~/ftp
 mkdir ~/ftp/share  # 创建一个子目录
 sudo chmod 777 ~/ftp
@@ -3454,7 +3443,7 @@ sudo chmod 777 ~/ftp
 
 ##### 3. 配置vsftpd
 
-```
+```shell
 sudo vi /etc/vsftpd.conf
 ```
 
@@ -3462,7 +3451,7 @@ sudo vi /etc/vsftpd.conf
 
 > **修改vsftpd.conf如下：**
 >
-> ```
+> ```shell
 > # 阻止 vsftpd 在独立模式下运行
 > listen=NO                 
 > # vsftpd 将监听 ipv6 而不是 IPv4
@@ -3494,7 +3483,7 @@ sudo vi /etc/vsftpd.conf
 >
 > **在文件最后添加下列内容：**
 >
-> ```
+> ```shell
 > # 锁定一个共享目录?? # 指定ftp上传下载目录
 > local_root=/home/chao/ftp
 > # 给共享目录添加写权限
@@ -3512,7 +3501,7 @@ sudo vi /etc/vsftpd.conf
 
 添加能够登录ftp服务器的用户名
 
-```
+```shell
 sudo vim /etc/vsftpd.chroot_list
 ```
 
@@ -3536,7 +3525,7 @@ sudo vim /etc/vsftpd.chroot_list
 
 ##### 重启 ftp 服务器
 
-```
+```shell
 sudo service vsftpd restart
 ```
 
@@ -3544,13 +3533,13 @@ sudo service vsftpd restart
 
 ##### 启动ftp服务器
 
-```
+```shell
 service vsftpd start
 ```
 
 ##### 查看vsftpd的状态，可以输入命令
 
-```
+```shell
 service vsftpd status
 ```
 
@@ -3558,7 +3547,7 @@ service vsftpd status
 
 ##### 实名用户登录
 
-```
+```shell
 ftp  IP地址
 Name： 服务器用户名
 Password： 服务器密码
@@ -3588,7 +3577,7 @@ Password： 服务器密码
 ​			sudo service vsftpd restart
 ​	登录ftp服务器
 
-```
+```shell
 ftp  服务器IP
 匿名账号：anonymous
 密码：没有密码
@@ -3614,7 +3603,7 @@ cd命令中必须带目录名。比如 cd main 表示进入当前目录下的mai
 
 上传文件到ftp服务器
 
-```
+```shell
 put somefile    # 上传本地文件到ftp
 put filename newname    # 上传后重命名
 ```
@@ -3633,7 +3622,7 @@ send：上传指定文件send filename [newname]
 
 ftp服务器上的文件下载到本地
 
-```
+```shell
 get somefile    # 下载ftp文件到本地
 get filename newname    # 下载后重命名
 mget filename [filename ....]    # 下载多个文件
@@ -3659,13 +3648,13 @@ mget：下载多个文件mget filename [filename ....]
 
 结束与服务器的FTP会话 
 
-```
+```shell
 close
 ```
 
 结束与服务器的FTP会话并退出FTP环境 
 
-```
+```shell
 quit
 exit？？
 ```
@@ -3706,14 +3695,14 @@ lftp是一个ftp客户端工具， 可以上传和下载目录
 
 软件安装
 
-```
+```shell
 sudo apt-get install lftp
 ```
 
 登录服务器
 ​匿名
 
-```
+```shell
 lftp 服务器ip  回车
 login
 ```
@@ -3725,7 +3714,7 @@ login
 
 操作
 
-```
+```shell
 put 上传文件
 mput 上传多个文件
 get 下载文件
@@ -3746,7 +3735,7 @@ scp不是FTP服务，使用该命令的前提条件要求目标主机已经成�
 
 scp 即 ssh copy 作用：基于ssh登陆进行安全的远程文件拷贝
 
-```
+```shell
 scp [可选参数] file_source file_target 
 ```
 
@@ -3764,7 +3753,7 @@ scp [可选参数] file_source file_target
 > - -P port：注意是大写的P, port是指定数据传输用到的端口号
 > - -S program： 指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。
 
-```
+```shell
 scp [选项] win本地文件 user@remote:远程文件  # 上传到远程linux
 scp [选项] user@remote:远程文件 win本地文件  # 下载到本地win
 scp [选项] -ls user@remote  # 列出远程路径下结构??
@@ -3779,7 +3768,7 @@ scp [选项] -ls user@remote  # 列出远程路径下结构??
 
 ##### 从本地复制到远程
 
-```
+```shell
 scp local_file remote_username@remote_ip:remote_folder  # 或者 
 scp local_file remote_username@remote_ip:remote_file  # 或者  
 scp local_file remote_ip:remote_folder  # 或者  
@@ -3794,7 +3783,7 @@ scp /home/space/music/1.mp3 www.runoob.com:/home/root/others/music/001.mp3
 - 第1,2个指定了用户名，命令执行后需要再输入密码，第1个仅指定了远程的目录，文件名字不变，第2个指定了文件名；
 - 第3,4个没有指定用户名，命令执行后需要输入用户名和密码，第3个仅指定了远程的目录，文件名字不变，第4个指定了文件名；
 
-```
+```shell
 scp -r local_folder remote_username@remote_ip:remote_folder  # 或者 
 scp -r local_folder remote_ip:remote_folder 
 # 示例
@@ -3809,7 +3798,7 @@ scp -r /home/space/music/ www.runoob.com:/home/root/others/
 
 从远程复制到本地，只要将从本地复制到远程的命令的后2个参数调换顺序即可
 
-```
+```shell
 # 示例
 scp root@www.runoob.com:/home/root/others/music /home/space/music/1.mp3 
 scp -r www.runoob.com:/home/root/others/ /home/space/music/
@@ -3819,7 +3808,7 @@ scp -r www.runoob.com:/home/root/others/ /home/space/music/
 
 把本地文件拷贝到远程文件夹中(上传)
 
-```
+```shell
 scp [-P port] 本地文件名 user@remote：远程文件夹名
 ```
 
@@ -3827,14 +3816,14 @@ scp [-P port] 本地文件名 user@remote：远程文件夹名
 
 scp -r 本地文件夹名 **user@remote：远程文件夹** 
 
-```
+```shell
 scp -r 本地文件夹名 user@remote：远程文件夹
 scp -r “E:\coursedocs” root@192.168.21.128:/home
 ```
 
 把远程文件复制到本地计算机中(下载)
 
-```
+```shell
 scp [-P port] user@remote：远程文件 本地文件名
 ```
 
@@ -3842,7 +3831,7 @@ scp [-P port] user@remote：远程文件 本地文件名
 
 scp -r **user@remote:远程文件夹** 本地地址 
 
-```
+```shell
 scp -r user@remote:远程文件夹 本地地址 
 ```
 
@@ -3856,7 +3845,7 @@ rz与sz上传、下载
 
 ##### 安装lszrz
 
-```
+```shell
 sudo apt-get install lrzsz  // Ubuntu
 ＃本地客户端另外安装zssh？？(如果本地安装了ssh可不安装zssh)
 #sudo apt-get install zssh
@@ -3868,7 +3857,7 @@ sudo apt-get install lrzsz  // Ubuntu
 
 ==ssh登陆后直接拖动文件到终端即可上传文件==
 
-```
+```shell
 ### 下载一个文件
 ＃ 远程服务器发送文件(准备被本地接收)
 sz filename  # 在服务器上,sz发送要下载的文件filename 
@@ -3889,7 +3878,7 @@ zssh > rz　　＃ 本地接收刚刚远程发送的文件
 
 sz 从服务端发送文件到客户端，可以直接使用sz filename实现下载，其中filename就是你想要下载的文件的名字，如果是目录需要打包成单个文件在实现下载（sz只能传输文件不能传输文件夹）。
 
-```
+```shell
 ### 上传一个文件：
 # 组合键进入zssh(切换到了本地机器目录)
 Ctrl + @ / Ctrl + 2  ＃ 进入zssh,切换到本地机器目录
@@ -3898,7 +3887,7 @@ zssh > ls　　＃查看本地文件
 zssh > sz filename  # (本地发送)本地文件filename上传到远程登录的当前目录
 ```
 
-```
+```shell
 ### 上传多个文件：
 Ctrl + @ / Ctrl + 2  ＃ 进入zssh,切换到本地机器
 zssh > sz filename1 filename2  # (本地发送)本地文件filename1,filename2上传到远程登录的当前目录
@@ -3948,20 +3937,20 @@ SSH（secure shell，安全外壳协议），对所有传输的数据进行**压
 
 服务器端安装ssh服务
 
-```
+```shell
 sudo apt-get install openssh-server
 ```
 
 #### SSH服务启动/停止/重启
 
-```
+```shell
 service sshd start/stop/restart
 /etc/init.d/sshd start/stop/restart  # 或者
 ```
 
 Ubuntu18.04 ssh 开机自动启动的设置方法
 
-```
+```shell
 # 开机自动启动ssh命令
 sudo systemctl enable ssh
 
@@ -3987,7 +3976,7 @@ SSH 客户端是一种使用 Secure Shell（SSH） 协议连接到远程计算�
 Linux系统默认有SSH客户端，WINDOS需要下载,常见终端工具有：Xshell、secureCRT、Putty等
 使用命令建立连接,然后输入目标计算机用户密码后就可以远程管理目标计算机了
 
-```
+```shell
 ssh [-p port] user@remote  # 登录远程SSH（用户@IP地址或域名）
 ssh -X -p 22 pi@192.168.137.177 
 ```
@@ -4003,13 +3992,13 @@ root 登录报错： `Permission denied (publickey,password)`
 
 > 设置允许root直接登录
 >
-> ```
+> ```shell
 > vim /etc/ssh/sshd_config    # 修改ssh配置文件
 > ```
 >
 > PermitRootLogin yes
 >
-> ```
+> ```shell
 > sudo service ssh restart    # 重启 SSH
 > ```
 >
@@ -4022,7 +4011,7 @@ root 登录报错： `Permission denied (publickey,password)`
 
 ssh-keygen 作用：在.ssh文件夹生成两个加密文件（公钥和私钥）供以后使用
 
-```
+```shell
 ssh-keygen
 ssh-keygen -t rsa
 ```
@@ -4058,7 +4047,7 @@ ssh-keygen -t rsa
 
 ssh-copy-id 作用：加密保存目标计算机密码到ssh-keygen生成的一个文件中,可以让远程服务器记住我们的公钥
 
-```
+```shell
 ssh-copy-id user@remote  # 让远程服务器记住我们的公钥
 ssh-copy-id -p port user@remote  # 让远程服务器记住我们的公钥
 ```
@@ -4092,11 +4081,11 @@ ssh-copy-id -p port user@remote  # 让远程服务器记住我们的公钥
 
  而 **配置别名** 可以让我们进一步偷懒，譬如用：`ssh mymac` 来替代上面这么一长串，那么就在 `~/.ssh/config` 里面追加以下内容：
 
-```
+```shell
 vim ~/.ssh/config  # 编辑ssh配置文件
 ```
 
-```
+```shell
 # mymac 替换 user@remote
 Host mymac
     HostName ip地址
@@ -4112,7 +4101,7 @@ Host mymac
 
 修改/etc/hosts配置文件
 
-```
+```shell
 sudo vim /etc/hosts
 ```
 

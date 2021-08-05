@@ -1745,7 +1745,7 @@ USB转串口的适配器，按芯片来分，有以下几种：CP2104, PL2303, C
 > Pin 6 : UART_CTS
 
 开发板与串口调试助手对应依次连接
-3.3V 电源，不需要连接
+3.3V **电源**，**不需要连接**
 注：如使用其它串口适配器遇到TX和RX不能输入和输出的问题，可以尝试对调TX和RX的连接。
 确保Jetson关闭并接线
 
@@ -1763,7 +1763,38 @@ jetsonTX2 使用以下串口参数：
 - 奇偶校验：无
 - 流控：无
 
-#### 主机端Ubuntu上使用串口调试
+
+
+#### 主机端Linux上使用串口调试（USB转串口设备）
+
+默认情况下ubuntu已经安装了USB转串口驱动(pl2303或者cp210x或者ch341的)
+
+查看USB转串口驱动
+
+```
+lsmod | grep usbserial    # 查看USB转串口驱动
+```
+
+> usbserial              53248  3 ch341
+
+插上USB转串口
+
+查看串口设备
+
+```
+lsusb  # 查看usb设备
+```
+
+> Bus 002 Device 006: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter
+
+```
+ls /dev/ttyUSB*   # 查看USB口
+# dmesg | grep ttyUSB0 # 或者
+```
+
+> /dev/ttyUSB0
+
+如果出现连接成功信息，则说明ubuntu系统已经识别该设备了。
 
 安装 minicom 串口调试助手
 
@@ -1771,19 +1802,12 @@ jetsonTX2 使用以下串口参数：
 sudo apt-get install minicom
 ```
 
-查看串口设备
-
-```
-lsusb  # 查看usb设备
-ls /dev/ttyUSB*
-# 示例是 /dev/ttyUSB0
-```
-
 运行配置minicom
 
 ```
-sudo minicom    # 启动minicom
-# sudo minicom -s    # 或者直接进入minicom设置界面
+sudo minicom -s    # 直接进入minicom设置界面
+# sudo minicom    # 启动minicom
+# 报错见下 minicom: cannot open /dev/modem: No such file or directory 
 ```
 
 > Welcome to minicom 2.7                                       
@@ -1848,14 +1872,34 @@ sudo minicom    # 启动minicom
 
 设置完成后回到上一菜单，选择“Save setup as dfl”即可保存为默认配置，以后将默认使用该配置。
 
-报错解决: minicom: cannot open /dev/modem: No such file or directory
+> 此时，如果启动Jetson，此时您将看到内核日志开始在主机上的Minicom窗口上滚动。
+
+返回上一级`Exit`退出设置，在`Welcome to minicom 2.7.1  `回车后可通过串口远程登陆jetson。
+
+> chao@deepin:~$ sudo minicom -s
+> Verification successful
+>
+> Welcome to minicom 2.7.1                                               
+>                                                                                 
+> OPTIONS: I18n                                                                   
+> Compiled on May  6 2018, 08:02:47.                                              
+> Port /dev/ttyUSB0, 20:07:04                                                     
+>                                                                                 
+> Press CTRL-A Z for help on special keys                                         
+>
+> Ubuntu 18.04.3 LTS jetson ttyS0                                                 
+>                                                                                 
+> jetson login: root                                                              
+> Password:  
+
+**报错解决**: minicom: cannot open /dev/modem: No such file or directory
 
 ```
 sudo ln -s /dev/ttyS0 /dev/modem    # 做一个软链接到/dev/ttyS0
 # minicom -s  # 或者设置一下
 ```
 
-然后，您可以启动Jetson，此时您将看到内核日志开始在主机上的Minicom窗口上滚动
+
 
 #### jetsonTX2端
 
@@ -1869,30 +1913,41 @@ ls -l  /dev/ttyTHS*  # 查看设备上已经启用的串口
 
 > ttyTHS1  —- 控制台串口(serial console)  —-  J21接口
 >
-> ttyTHS2  —-             空闲                          —-  J17接口
+> ttyTHS2  —-                 空闲                    —-  J17接口
 >
-> ttyTHS3  —-               蓝牙模块                 —-  蓝牙（无外接口）
+> ttyTHS3  —-             蓝牙模块                 —-  蓝牙（无外接口）
 
-### Linux下使用USB转串口设备
+### putty通过串口登陆
 
-默认情况下ubuntu已经安装了USB转串口驱动(pl2303或者cp210x的)
+[通过串口调试接口登录](https://www.waveshare.net/study/article-894-1.html)
 
-查看USB转串口驱动
+**通过串口调试接口登录**
 
-```
-lsmod | grep usbserial
-```
+Jetson Nano 底板上引出了串口调试接口，你可以通过TTL转USB模块连接到电脑上，使用putty软件登录Jetson 。
 
-> usbserial              45056  1 pl2303
+USB转串口模块这里推荐我们的 [CP2102 USB UART Board](https://www.waveshare.net/shop/CP2102-USB-UART-Board-micro.htm)
 
-插上USB转串口
+具体连接方式为
 
-```
-ls /dev/ttyUSB*
-dmesg | grep ttyUSB0
-```
+| Jetson | **CP2102 USB UART Board** |
+| ------ | ------------------------- |
+| GND    | GND                       |
+| RX     | TX                        |
+| TX     | RX                        |
 
-如果出现连接成功信息，则说明ubuntu系统已经识别该设备了。
+将串口模块连接好之后，接入到电脑。电脑会识别到一个COM口，如果win电脑无法正常识别串口的话，可以下载[串口驱动](https://www.waveshare.net/w/upload/6/62/CP210x_USB_TO_UART.zip)，安装之后再测试。
+
+连接好之后，下载并打开[Putty软件](https://www.waveshare.net/w/upload/5/56/Putty.zip)。这里有几个地方要注意一下，COM口要选择你电脑识别到的对应COM口，这里可以直接查看设备管理器获取。
+
+波特率设置为115200即可。连接方式注意选择serial. 设置好之后点击Open打开即可。
+
+[![img](assets/205226mxchk7hx2dz7m9xq.png)](https://www.waveshare.net/study/data/attachment/portal/201908/27/205226mxchk7hx2dz7m9xq.png)
+
+上电启动Jetson Nano. 注意查看在putty串口是否在Jetson Nano的过程中打印数据
+
+等待系统完全启动之后，输入账号名和密码即可。
+
+
 
 ### I2C
 
